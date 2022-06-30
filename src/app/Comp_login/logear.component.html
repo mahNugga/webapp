@@ -1,0 +1,16 @@
+<h2>
+    {{sub_cabecera}}
+</h2>
+
+<section class="login">
+    <h2>Acceder al sistema</h2>
+    
+        <label>Ingrese sus datos</label>
+        <br/>
+        <input type="text" name="email" placeholder="Correo elecronico o usuario">
+        <input type="password" name="pwd" placeholder="Contrasena">
+        <button type="submit" name="submit" >Login</button>
+        <label> No es usuario? Registrese aqui!</label>
+        <br/>
+        <button (click)="registrar()" name="registra" >Registrarse</button>
+</section>

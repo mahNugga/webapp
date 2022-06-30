@@ -1,0 +1,29 @@
+<h2>Componente de Registro</h2>
+<h2>{{sub_cabecera}}</h2>
+
+<section class="signup">
+    <h2>Registro</h2>
+    <form action="signup.js" method="post">
+        <label>Registre sus datos de usuario</label>
+        <br/>
+        <input type="text" name="email" placeholder="Correo elecronico">
+        <br/>
+        <input type="text" name="nombre" placeholder="Nombres">
+        <br/>
+        <input type="text" name="apellido" placeholder="Apellidos"  required pattern="[a-zA-Z]+"/>
+        <!--<span *ngIf="apellidos.touched && !apellidos.valid">
+
+        </span>-->
+        <br/>
+        <input type="password" name="pwd" placeholder="Contrasena">
+        <br/>
+        <input type="password" name="pwd" placeholder="Re-ingresar Contrasena">
+        <br/>
+        <label>Datos Adicionales(Opcionales)</label>
+        <br/>
+        <input type="date" name="date" placeholder="Fecha nacimiento">
+        <br/>
+        <button type="submit" name="submit" >Registrar</button>
+        
+        <br/>
+    
