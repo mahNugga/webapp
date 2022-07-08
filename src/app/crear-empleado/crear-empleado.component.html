@@ -1,0 +1,65 @@
+<div class="container">
+    <h2>{{titulo}}</h2>
+    <div class="mensaje success" *ngIf="status=='success'">
+        Empleado Guardado! , para mas opciones <a href="#">click aqui</a>
+    </div>
+    <div class="mensaje fail" *ngIf="status=='fail'">
+        Error al guardar empleado ! , para mas opciones <a href="#">click aqui</a>
+    </div>
+    <form #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)">
+        <p>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" #name="ngModel" [(ngModel)]="empleado.nombre"
+            required/>
+            <span class="empleadoformErr" *ngIf="name.touched && !name.valid">
+                Debe entrar un nombre valido!
+            </span>
+        </p>
+        <p>
+            <label for="apellido">Apellido</label>
+            <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="empleado.apellido"
+            required/>
+            <span class="empleadoformErr" *ngIf="apellido.touched && !apellido.valid">
+                Debe entrar un apellido valido!
+            </span>
+        </p>
+        <p>
+            <label for="correo">Correo</label>
+            <input type="email" name="correo" #correo="ngModel" [(ngModel)]="empleado.correo" 
+            required/>
+            <span class="empleadoformErr" *ngIf="correo.touched && !correo.valid">
+                Debe tener un formato e-mail!
+            </span>
+        </p>
+        <p>
+            <label for="pass">Contraseña</label>
+            <input type="text" name="pass" #pass="ngModel" [(ngModel)]="empleado.password"
+            required/>
+            <span class="empleadoformErr" *ngIf="pass.touched && !pass.valid">
+                Debe ingresar una contraseña!
+            </span>
+        </p>
+        <p>
+            <label for="telefono">Telefono</label>
+            <input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="empleado.telefono"
+            required/>
+            <span class="empleadoformErr" *ngIf="telefono.touched && !telefono.valid">
+                Debe entrar un numero de telefono valido!
+            </span>
+        </p>
+        <p>
+            <label for="direccion">Direccion</label>
+            <input type="text" name="direccion" #direccion="ngModel" [(ngModel)]="empleado.direccion"/>
+        </p>
+        <p>
+            <label for="rol">Rol</label>
+            <input type="text" name="rol" #rol="ngModel" [(ngModel)]="empleado.rol"
+            required/>
+            <span class="empleadoformErr" *ngIf="rol.touched && !rol.valid">
+                Debe escoger un rol valido!
+            </span>
+        </p>
+        <input type="submit" value="Guardar" [disabled]="!empleadoForm.form.valid" />
+    </form>
+</div>
+

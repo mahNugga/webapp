@@ -5,11 +5,13 @@ import { Routes, RouterModule, Route } from "@angular/router";
 //Importar los componentes
 import {logearComponent} from './Comp_login/logear.component';
 import { registroComponent } from "./Comp_registro/registro.component";
+import { CrearEmpleadoComponent } from "./crear-empleado/crear-empleado.component";
 
 //Configuracion de rutas
 const appRoutes: Routes = [
     {path:'', component: logearComponent},
     {path:'registro', component:registroComponent},
+    {path:'crear-empleado',component:CrearEmpleadoComponent},
     {path: '**', component:logearComponent}
 ];
 
