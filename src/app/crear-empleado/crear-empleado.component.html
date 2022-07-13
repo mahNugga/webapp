@@ -1,4 +1,5 @@
-<div class="container">
+<app-comp-principal-empleado></app-comp-principal-empleado>
+<div class="contenedor">
     <h2>{{titulo}}</h2>
     <div class="mensaje success" *ngIf="status=='success'">
         Empleado Guardado! , para mas opciones <a href="#">click aqui</a>
@@ -52,14 +53,20 @@
             <input type="text" name="direccion" #direccion="ngModel" [(ngModel)]="empleado.direccion"/>
         </p>
         <p>
-            <label for="rol">Rol</label>
-            <input type="text" name="rol" #rol="ngModel" [(ngModel)]="empleado.rol"
-            required/>
+            <label for="rol">Elegir un Rol</label>
+            <select name="rol" #rol="ngModel" [(ngModel)]="empleado.rol"
+            required>
+            <option value="empleado1" selected>Empleado</option>
+            <option value="administrador">Administador</option>
+            
             <span class="empleadoformErr" *ngIf="rol.touched && !rol.valid">
                 Debe escoger un rol valido!
             </span>
+            </select>
         </p>
         <input type="submit" value="Guardar" [disabled]="!empleadoForm.form.valid" />
     </form>
 </div>
+
+
 

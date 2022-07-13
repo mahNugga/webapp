@@ -8,6 +8,6 @@ export class Empleado{
        public direccion: string,
        public rol: number,
        public fecha_creacion: Date,
-       public estado: number
+       public estado: string
     ){}
 }

@@ -24,4 +24,17 @@ export class EmpleadoServicio{
 
         return this._http.post(this.url+'nuevo-empleado',params,{headers:headers});
     }
+
+    consultarEmpleado():Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+
+        return this._http.get(this.url+'consulta-empleado',{headers:headers});
+    }
+
+    listaEmpleado():Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+
+        return this._http.get(this.url+'lista-empleado',{headers:headers});
+    
+    }
 }

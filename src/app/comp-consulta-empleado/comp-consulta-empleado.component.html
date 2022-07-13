@@ -1,0 +1,12 @@
+<app-comp-principal-empleado></app-comp-principal-empleado>
+<div class="contenedor">
+    <h2>Empleados</h2>
+
+    <ul>
+        <li *ngFor="let empleado of empleados">
+            
+            {{empleado.apellido}} {{empleado.nombre}} <strong>Correo: </strong>{{empleado.correo}}
+        </li>
+        
+    </ul>
+</div>

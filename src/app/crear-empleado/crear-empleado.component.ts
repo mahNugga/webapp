@@ -8,7 +8,7 @@ import { EmpleadoServicio } from '../servicios/empleado.servicio';
   styleUrls: ['./crear-empleado.component.scss'],
   providers: [EmpleadoServicio]
 })
-export class CrearEmpleadoComponent implements OnInit {
+export class CrearEmpleadoComponent implements OnInit  {
   public titulo:string;
   public empleado: Empleado;
   public status!: string;
@@ -17,7 +17,7 @@ export class CrearEmpleadoComponent implements OnInit {
     private _empleadoServicio: EmpleadoServicio
   ) { 
     this.titulo = "Registrar nuevo empleado";
-    this.empleado = new Empleado('','','','','','', 0,new Date(),1);
+    this.empleado = new Empleado('','','','','','', 0,new Date(),"empleado");
     
   }
 
@@ -29,6 +29,7 @@ export class CrearEmpleadoComponent implements OnInit {
       response =>{
         if(response.empleado){
           this.status = 'success';
+          form.reset();
         }else{
           this.status = 'fail';
         }

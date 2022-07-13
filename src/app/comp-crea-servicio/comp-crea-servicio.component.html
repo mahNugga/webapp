@@ -1,0 +1,32 @@
+<app-comp-principal-empleado></app-comp-principal-empleado>
+<div class="contenedor">
+    <h2> Crear nuevo servicio</h2>
+    <form #servicioForm="ngForm" (ngSubmit)="onSubmit(servicioForm)">
+        <p>
+            <label for="nombre">Nombre del servicio</label>
+            <input type="text" name="nombre"
+            required/>
+            
+        </p>
+        <p>
+            <label for="apellido">Descripcion</label>
+            <input type="text" name="apellido" 
+            required/>
+            
+        </p>
+        <p>
+            <label for="correo">Duracion</label>
+            <input type="email" name="correo" 
+            required/>
+           
+        </p>
+        <p>
+            <label for="pass">Precio</label>
+            <input type="text" name="pass" 
+            required/>
+            
+        </p>
+        
+        <input type="submit" value="Guardar" [disabled]="!servicioForm.form.valid" />
+    </form>
+</div>
