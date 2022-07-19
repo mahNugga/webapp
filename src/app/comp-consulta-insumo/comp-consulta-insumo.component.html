@@ -1,1 +1,12 @@
-<p>comp-consulta-insumo works!</p>
+<app-comp-principal-empleado></app-comp-principal-empleado>
+<div class="contenedor">
+    <h2>Insumos</h2>
+
+    <ul>
+        <li *ngFor="let insumo of insumos">
+            
+            {{insumo.nombre}} {{insumo.descripcion}} <strong>Costo: </strong>{{insumo.costo}}
+        </li>
+        
+    </ul>
+</div>

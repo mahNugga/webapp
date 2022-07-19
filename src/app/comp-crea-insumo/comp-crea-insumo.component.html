@@ -1,36 +1,43 @@
 <app-comp-principal-empleado></app-comp-principal-empleado>
 
 <div class="contenedor">
-    <h2>Registro de Insumo</h2>
+    <h2>{{titulo}}</h2>
+
    
-    <form #insumoForm="ngForm" (ngSubmit)="onSubmit(insumoForm)">
+    <form #insumoForm="ngForm" (ngSubmit)="onSubmitinsumo(insumoForm)">
         <p>
             <label for="nombre">Nombre</label>
-            <input type="text" name="nombre"
+            <input type="text" name="nombre" 
+            #nombre="ngModel" [(ngModel)]="insumo.nombre"
             required/>
             
         </p>
         <p>
             <label for="descripcion">Descripcion</label>
             <input type="text" name="descripcion" 
+            #descripcion="ngModel" [(ngModel)]="insumo.descripcion"
             required/>
             
         </p>
         <p>
             <label for="costo">Costo</label>
             <input type="text" name="costo" 
+            #costo="ngModel" [(ngModel)]="insumo.costo"
             required/>
            
         </p>
         <p>
             <label for="stock">Stock</label>
             <input type="text" name="stock" 
+            #stock="ngModel" [(ngModel)]="insumo.stock" 
             required/>
             
         </p>
         <p>
-            <label for="stockideal">Stock_ideal</label>
-            <input type="text" name="stockideal" />
+            <label for="stockideal">Stock ideal</label>
+            <input type="text" name="stockideal" 
+            #sctockideal="ngModel" [(ngModel)]="insumo.stock_ideal"
+            />
             
         </p>
         

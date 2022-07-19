@@ -9,21 +9,26 @@ import { InsumoServicio } from '../servicios/insumo.servicio';
   providers:[InsumoServicio]
 })
 export class CompCreaInsumoComponent implements OnInit {
+  public titulo: string;
   public insumo: Insumo;
   public status!: string;
   constructor(
     private _insumoServicio: InsumoServicio
   ) {
+      this.titulo= "Registro de nuevo Insumo";
       this.insumo = new Insumo('','',0,1,0,0);
    }
 
   ngOnInit(): void {
   }
 
-  onSubmit(form: any){
+  onSubmitinsumo(form: any){
+    //console.log(this.insumo);
     this._insumoServicio.guardarInsumo(this.insumo).subscribe(
       response =>{
-        if(response.insumo){
+        console.log(response.insumo)
+        if(response){
+          console.log("onSubmit ha sido success");
           this.status = 'success';
           form.reset();
         }else{
