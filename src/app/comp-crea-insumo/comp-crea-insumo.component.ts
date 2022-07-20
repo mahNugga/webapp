@@ -26,7 +26,7 @@ export class CompCreaInsumoComponent implements OnInit {
     //console.log(this.insumo);
     this._insumoServicio.guardarInsumo(this.insumo).subscribe(
       response =>{
-        console.log(response.insumo)
+        console.log(response.insumo);
         if(response){
           console.log("onSubmit ha sido success");
           this.status = 'success';

@@ -15,7 +15,7 @@ export class CompConsultaInsumoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+    this.listarInsumo();
   }
 
   listarInsumo(){

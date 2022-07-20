@@ -52,6 +52,13 @@ body{
     background-color: #32a852;
     color: wheat;
 }
+.adminclick{
+    color: #ccc;
+}
+.drpdwn li{
+    background: rgb(189, 206, 239);
+    border-bottom: 1px solid rgba(0,0,0, .2);
+}
 
 /* body contenedor*/
 .contenedor{

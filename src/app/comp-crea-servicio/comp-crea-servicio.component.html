@@ -1,29 +1,35 @@
-<app-comp-principal-empleado></app-comp-principal-empleado>
+<app-cab-admin></app-cab-admin>
 <div class="contenedor">
-    <h2> Crear nuevo servicio</h2>
+    <h2> {{titulo}}</h2>
     <form #servicioForm="ngForm" (ngSubmit)="onSubmit(servicioForm)">
         <p>
             <label for="nombre">Nombre del servicio</label>
             <input type="text" name="nombre"
+            #nombre="ngModel" [(ngModel)]="servicio.nombre"
             required/>
             
         </p>
         <p>
-            <label for="apellido">Descripcion</label>
-            <input type="text" name="apellido" 
+            <label for="descripcion">Descripcion</label>
+            <input type="text" name="descripcion" 
+            #nombre="ngModel" [(ngModel)]="servicio.descripcion"
             required/>
             
         </p>
         <p>
-            <label for="correo">Duracion</label>
-            <input type="email" name="correo" 
+            <label for="dura">Duracion</label>
+            <input type="number" min="0:01:00" max="999" [minlength]=1 name="dura" style="width:15% ;"
+            #nombre="ngModel" [(ngModel)]="servicio.hora"
             required/>
+            <label for="dura" style="display: initial; margin: 5px;">Minutos</label>
            
         </p>
         <p>
-            <label for="pass">Precio</label>
-            <input type="text" name="pass" 
+            <label for="precio">Precio</label>
+            <input type="number" name="precio" style="width: 15%;"
+            #nombre="ngModel" [(ngModel)]="servicio.precio"
             required/>
+            <label for="dura" style="display: initial; margin-left: 5px;">Dolares Americanos</label>
             
         </p>
         

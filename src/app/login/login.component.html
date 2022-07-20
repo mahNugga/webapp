@@ -1,0 +1,26 @@
+
+<div class="principalglobal">
+    <h2>{{titulo}}</h2>
+    <form #ingresoForm="ngForm" (ngSubmit)="ingresar(ingresoForm)">
+        <p>
+            <label for="correo">Correo</label>
+            <input type="email" name="correo"
+            #correo="ngModel"[(ngModel)]="usuario.correo"
+             placeholder="correo/e-mail" required/>
+             <span *ngIf="correo.touched && !correo.valid">
+                El correo debe ser valido!
+             </span>
+             
+        </p>
+        <p>
+            <label for="pass">Contraseña</label>
+             <input type="password" name="pass"
+             #password="ngModel"[(ngModel)]="usuario.password"
+             placeholder="password" required/>
+             <span *ngIf="password.touched && !password.valid">
+                Debe ingresar una contraseña!
+             </span>
+        </p>
+        <input type="submit" value="Ingresar" [disabled]="!ingresoForm.form.valid"/>
+    </form>
+</div>

@@ -24,6 +24,6 @@ export class InsumoServicio{
     listaInsumo():Observable<any>{
         let headers = new HttpHeaders().set('Content-Type','application/json');
 
-        return this._http.get(this.url+'lista-insumo',{headers:headers});
+        return this._http.get(this.url+'consulta-insumo',{headers:headers});
     }
 }

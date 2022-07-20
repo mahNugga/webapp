@@ -10,6 +10,7 @@ export class CompPrincipalEmpleadoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+   
   }
 
 }

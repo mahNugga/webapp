@@ -14,6 +14,10 @@ import { CompConsultaInsumoComponent } from './comp-consulta-insumo/comp-consult
 import { CompCreaServicioComponent } from './comp-crea-servicio/comp-crea-servicio.component';
 import { CompConsultaServicioComponent } from './comp-consulta-servicio/comp-consulta-servicio.component';
 import { CompPrincipalEmpleadoComponent } from './comp-principal-empleado/comp-principal-empleado.component';
+import { SliderComponent } from './slider/slider.component';
+import { CabAdminComponent } from './cab-admin/cab-admin.component';
+import { RegistroComponent } from './registro/registro.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,11 @@ import { CompPrincipalEmpleadoComponent } from './comp-principal-empleado/comp-p
     CompConsultaInsumoComponent,
     CompCreaServicioComponent,
     CompConsultaServicioComponent,
-    CompPrincipalEmpleadoComponent
+    CompPrincipalEmpleadoComponent,
+    SliderComponent,
+    CabAdminComponent,
+    RegistroComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
