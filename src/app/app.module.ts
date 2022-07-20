@@ -18,6 +18,10 @@ import { SliderComponent } from './slider/slider.component';
 import { CabAdminComponent } from './cab-admin/cab-admin.component';
 import { RegistroComponent } from './registro/registro.component';
 import { LoginComponent } from './login/login.component';
+import { EntradaEmpleadoComponent } from './entrada-empleado/entrada-empleado.component';
+import { CabEmpleadoComponent } from './cab-empleado/cab-empleado.component';
+import { EntradaClienteComponent } from './entrada-cliente/entrada-cliente.component';
+import { CabClienteComponent } from './cab-cliente/cab-cliente.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,11 @@ import { LoginComponent } from './login/login.component';
     SliderComponent,
     CabAdminComponent,
     RegistroComponent,
-    LoginComponent
+    LoginComponent,
+    EntradaEmpleadoComponent,
+    CabEmpleadoComponent,
+    EntradaClienteComponent,
+    CabClienteComponent
   ],
   imports: [
     BrowserModule,

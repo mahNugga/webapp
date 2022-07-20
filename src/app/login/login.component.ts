@@ -31,9 +31,11 @@ export class LoginComponent implements OnInit {
           console.log(response);
           if(response.teller==5){
             console.log("Recordaran este dia como el usuario salvaje!");
+            this._router.navigate(['/principal-cliente']);
           }
           if(response.teller==1){
             console.log("Recordaran este dia como el empleado simplon!");
+            this._router.navigate(['/principal-empleado']);
           }
           if(response.teller==7){
             console.log("Recordaran este dia como el admin!");

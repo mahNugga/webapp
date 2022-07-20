@@ -11,12 +11,16 @@ import { CompPrincipalEmpleadoComponent } from "./comp-principal-empleado/comp-p
 import {logearComponent} from './Comp_login/logear.component';
 import { registroComponent } from "./Comp_registro/registro.component";
 import { CrearEmpleadoComponent } from "./crear-empleado/crear-empleado.component";
+import { EntradaClienteComponent } from "./entrada-cliente/entrada-cliente.component";
+import { EntradaEmpleadoComponent } from "./entrada-empleado/entrada-empleado.component";
 import { LoginComponent } from "./login/login.component";
 
 //Configuracion de rutas
 const appRoutes: Routes = [
     {path:'', component: LoginComponent},
     {path:'registro', component:registroComponent},
+    {path:'principal-cliente',component:EntradaClienteComponent},
+    {path:'principal-empleado',component:EntradaEmpleadoComponent},
     {path:'principal-admin',component:CompPrincipalEmpleadoComponent},
     {path:'crear-empleado',component:CrearEmpleadoComponent},
     {path:'consulta-empleado',component:CompConsultaEmpleadoComponent},
