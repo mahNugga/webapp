@@ -22,6 +22,8 @@ import { EntradaEmpleadoComponent } from './entrada-empleado/entrada-empleado.co
 import { CabEmpleadoComponent } from './cab-empleado/cab-empleado.component';
 import { EntradaClienteComponent } from './entrada-cliente/entrada-cliente.component';
 import { CabClienteComponent } from './cab-cliente/cab-cliente.component';
+import { EntradaPrincipalComponent } from './entrada-principal/entrada-principal.component';
+import { CabMainComponent } from './cab-main/cab-main.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { CabClienteComponent } from './cab-cliente/cab-cliente.component';
     EntradaEmpleadoComponent,
     CabEmpleadoComponent,
     EntradaClienteComponent,
-    CabClienteComponent
+    CabClienteComponent,
+    EntradaPrincipalComponent,
+    CabMainComponent
   ],
   imports: [
     BrowserModule,

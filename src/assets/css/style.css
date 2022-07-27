@@ -127,11 +127,123 @@ form input[type="submit"]:hover{
     
 }
 
-form input[disabled]{
+form input[disabled],
+form button[disabled]{
     opacity: 0.4;
     cursor: not-allowed;
 }
 
+/* Seccion pro can*/
+:root{
+    --bg-color: #044903;
+    --primary-color: #81c6ff;
+    --secondary-color: #9dc0df;
+}
+/*botones pro can login*/
+    /*contenedor pro can*/
+.buddy{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-color);
+    margin-left: 30%;
+    width: 40%;
+    min-height: 300px;
+    background:  rgba(255, 255, 255, 0.43);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0,0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px soli rgba(255, 255, 255, 0.3);
+}
+
+.buddy span{
+    display: block;
+    color: rgba(164, 85, 15, 0.85);
+}
+.principallogin{
+    padding-top: 5%;
+    background: var(--bg-color);
+    background-image: linear-gradient(to bottom right, rgba(143, 241, 141, 0.6),rgb(5, 56, 4));
+    min-height: 100vh;
+    text-align: center;
+}
+.principallogin h2{
+    color: white;
+    text-shadow: 1px 1px 2px black,
+    0 0 25px blue, 0 0 5px darkblue;
+}
+.PCbtn{
+    position: relative;
+    display: block;
+    padding: 15px 30px;
+    color: var(--primary-color);
+    background-color: #172f05;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+    font-size: 30px;
+    overflow: hidden;
+    transition: 0.2s;
+}
+.PCbtn:hover{
+    color:white;
+    background: var(--primary-color);
+    box-shadow:
+    0 0 20px var(--primary-color), 0 0 80px var(--primary-color),
+    0 0 160px var(--primary-color), 0 0 320px var(--primary-color);
+}
+.PCbtn span{
+    position: absolute;
+    display: block;
+}
+.PCbtn span:nth-child(1){
+    top: 0;
+    transform: translateX(-115%);
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--primary-color));
+}
+
+.PCbtn:hover span:nth-child(1){
+    transform: translateX(100%);
+    transition: 1s;
+}
+.PCbtn span:nth-child(3){
+    bottom: 0;
+    transform: translateX(100%);
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(270deg, transparent, var(--primary-color));
+}
+
+.PCbtn:hover span:nth-child(3){
+    transform: translateX(-115%);
+    transition: 1s 0.5s;
+}
+.PCbtn span:nth-child(2){
+    right:  0;
+    transform: translateY(-130%);
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, var(--primary-color));
+}
+
+.PCbtn:hover span:nth-child(2){
+    transform: translateY(100%);
+    transition: 1s 0.25s;
+}
+
+.PCbtn span:nth-child(4){
+    left:   0;
+    transform: translateY(100%);
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, var(--primary-color));
+}
+.PCbtn:hover span:nth-child(4){
+    transform: translateY(-130%);
+    transition: 1s 0.75s;
+}
 /* seccion errores*/
 
 .empleadoformErr{
