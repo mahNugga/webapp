@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Empleado } from '../modelos/empleado';
 import { EmpleadoServicio } from '../servicios/empleado.servicio';
 import { global } from '../servicios/global';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { DialogEmpleadoComponent } from '../dialog-empleado/dialog-empleado.component';
 
 @Component({
   selector: 'app-comp-consulta-empleado',
@@ -13,9 +16,13 @@ import { global } from '../servicios/global';
 export class CompConsultaEmpleadoComponent implements OnInit {
   public empleados: Empleado[] = [];
   public test = ['jUAN','TONIO','MOCHO','PEPE'];
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 10;
+  tableSizes: any = [5,10,15];
   constructor(
     private _empleadoservicio: EmpleadoServicio,
-    
+    private dialog: MatDialog
   ) { 
     
   }
@@ -48,6 +55,25 @@ export class CompConsultaEmpleadoComponent implements OnInit {
         console.log(<any>error)
       }
       
+    );
+  }
+
+  onTableDataChange(event:any){
+    this.page = event;
+    this.listaEmpleado();
+  }
+
+  onTableSizeChange(event:any):void{
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.listaEmpleado();
+  }
+
+  openDialog(){
+    this.dialog.open(DialogEmpleadoComponent,{
+      width: '50%',
+      height: '50%'
+    } 
     );
   }
 }

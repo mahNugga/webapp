@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { routing, appRoutingProviders } from './app.routing';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { registroComponent } from './Comp_registro/registro.component';
@@ -24,6 +25,8 @@ import { EntradaClienteComponent } from './entrada-cliente/entrada-cliente.compo
 import { CabClienteComponent } from './cab-cliente/cab-cliente.component';
 import { EntradaPrincipalComponent } from './entrada-principal/entrada-principal.component';
 import { CabMainComponent } from './cab-main/cab-main.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { DialogEmpleadoComponent } from './dialog-empleado/dialog-empleado.component';
 
 @NgModule({
   declarations: [
@@ -45,14 +48,17 @@ import { CabMainComponent } from './cab-main/cab-main.component';
     EntradaClienteComponent,
     CabClienteComponent,
     EntradaPrincipalComponent,
-    CabMainComponent
+    CabMainComponent,
+    DialogEmpleadoComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     routing,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
+    MatDialogModule
   ],
   providers: [
     appRoutingProviders

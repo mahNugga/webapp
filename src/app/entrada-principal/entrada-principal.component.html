@@ -1,1 +1,47 @@
-<p>entrada-principal works!</p>
+<app-cab-main></app-cab-main>
+
+<div class="contenedor2">
+    <div class="carousel">
+        <h2> Servicios</h2>
+        <div class="slick-list" id="slick-list">
+            <!--<button class="slick-arrow slick-prev" id="btn-prev">
+                <span class="slick-prev-span"></span>
+            </button>-->
+            <a class="prev" onclick="plusSlides(-1)">❮</a>
+            <div class="slick-track" id="track">
+                <div class="slick">
+                    <div>
+                        <a>
+                            <picture>
+                                <img src="../../assets/imagen/front/CARO-3.jpg" alt="imagen">
+                            </picture>
+                        </a>
+                    </div>
+                </div>
+                <div class="slick">
+                    <div>
+                        <a>
+                            <picture>
+                                <img src="../../assets/imagen/front/CARO-4.jpg" alt="imagen">
+                            </picture>
+                        </a>
+                    </div>
+                </div>
+                <div class="slick">
+                    <div>
+                        <a>
+                            <picture>
+                                <img src="../../assets/imagen/front/CARO-5.jpg" alt="imagen">
+                            </picture>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--<button class="slick-arrow slick-nxt" id="slick-nxt">
+                <span class="slick-nxt-span"></span>
+            </button>-->
+            <a class="next" onclick="plusSlides(1)">❯</a>
+        </div>
+        <button (click)="openDialog()">dialog</button>
+    </div>
+</div>

@@ -1,12 +1,46 @@
 <app-cab-admin></app-cab-admin>
 <div class="contenedor">
     <h2>Empleados</h2>
-
-    <ul>
-        <li *ngFor="let empleado of empleados">
-            
-            {{empleado.apellido}} {{empleado.nombre}} <strong>Correo: </strong>{{empleado.correo}}
-        </li>
-        
-    </ul>
+    <div>
+        <select (change)="onTableSizeChange($event)">
+            <option *ngFor="let size of tableSizes">
+                {{size}}
+            </option>
+        </select>
+    </div>
+    <table class="empleadoTabla">
+        <thead>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Apellido
+            </th>
+            <th>
+                Correo
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Rol
+            </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empleado of empleados | paginate: {itemsPerPage: tableSize,
+                    currentPage: page, totalItems: count}; let i = index">
+                <td class="nombres">{{empleado.nombre}}</td><td class="nombres">{{empleado.apellido}}</td>
+                <td class="correo">{{empleado.correo}}</td><td class="centrar">{{empleado.telefono}}</td>
+                <td class="limite" *ngIf="empleado.rol==1">Empleado</td><td *ngIf="empleado.rol==7"> Administrador</td>
+                <td class="borderless"><button><span class="editaempleado" (click)="openDialog()"></span></button></td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <pagination-controls
+            previousLabel="Anterior"
+            nextLabel="Siguiente"
+            (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+    </div>
 </div>

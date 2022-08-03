@@ -6,8 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cab-main.component.scss']
 })
 export class CabMainComponent implements OnInit {
-
-  constructor() { }
+  public titulo:string;
+  constructor() {
+    this.titulo = "Carolina Aguirre Master en Colorimetria Organica";
+   }
 
   ngOnInit(): void {
   }
