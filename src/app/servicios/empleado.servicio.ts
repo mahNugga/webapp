@@ -25,6 +25,13 @@ export class EmpleadoServicio{
         return this._http.post(this.url+'nuevo-empleado',params,{headers:headers});
     }
 
+    editarEmpleado(empleado:Empleado):Observable<any>{
+        let params = JSON.stringify(empleado);
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+
+        return this._http.put(this.url+'edita-empleado',{headers:headers});
+    }
+
     consultarEmpleado():Observable<any>{
         let headers = new HttpHeaders().set('Content-Type','application/json');
 

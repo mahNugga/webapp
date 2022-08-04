@@ -32,7 +32,7 @@
                 <td class="nombres">{{empleado.nombre}}</td><td class="nombres">{{empleado.apellido}}</td>
                 <td class="correo">{{empleado.correo}}</td><td class="centrar">{{empleado.telefono}}</td>
                 <td class="limite" *ngIf="empleado.rol==1">Empleado</td><td *ngIf="empleado.rol==7"> Administrador</td>
-                <td class="borderless"><button><span class="editaempleado" (click)="openDialog()"></span></button></td>
+                <td class="borderless"><button (click)="openDialog(empleado)"><span class="editaempleado" ></span></button></td>
             </tr>
         </tbody>
     </table>

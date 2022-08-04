@@ -20,7 +20,7 @@ body{
 /*BARRAS DE NAVEGACION*/
 /*Barra de admin*/
  #admin{
-    font-size: 50px;
+    font-size: 45px;
     width: 100%;
     height: 60px;
     background:rgba(24, 127, 161,1);
@@ -29,6 +29,11 @@ body{
     position: fixed;
     text-transform: uppercase;
     transition: all 500ms;
+}
+#admin nav{
+    font: 200;
+    font-size: 40px;
+    padding: 15px;
 }
 #empleado{
     font-size: 45px;

@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Empleado } from '../modelos/empleado';
 import { EmpleadoServicio } from '../servicios/empleado.servicio';
 import { global } from '../servicios/global';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatDialog,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogEmpleadoComponent } from '../dialog-empleado/dialog-empleado.component';
 
 @Component({
@@ -69,11 +68,10 @@ export class CompConsultaEmpleadoComponent implements OnInit {
     this.listaEmpleado();
   }
 
-  openDialog(){
+  openDialog(row :any){
     this.dialog.open(DialogEmpleadoComponent,{
-      width: '50%',
-      height: '50%'
-    } 
-    );
+      width:'50%',
+      data:row
+    });
   }
 }

@@ -25,7 +25,10 @@ import { EntradaClienteComponent } from './entrada-cliente/entrada-cliente.compo
 import { CabClienteComponent } from './cab-cliente/cab-cliente.component';
 import { EntradaPrincipalComponent } from './entrada-principal/entrada-principal.component';
 import { CabMainComponent } from './cab-main/cab-main.component';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule} from '@angular/material/input';
+import { MatSelectModule} from '@angular/material/select';
 import { DialogEmpleadoComponent } from './dialog-empleado/dialog-empleado.component';
 
 @NgModule({
@@ -58,7 +61,10 @@ import { DialogEmpleadoComponent } from './dialog-empleado/dialog-empleado.compo
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
-    MatDialogModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [
     appRoutingProviders
