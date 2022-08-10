@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>{{titulo}}</h2>
 <div mat-dialog-content>
-   <form #empleadoEditForm="ngForm" (ngSubmit)="onSubmit(empleadoEditForm)">
+   <form #empleadoEditForm="ngForm" >
     <mat-form-field appearance="outline">
         <mat-label>Nombre</mat-label>
         <input type="text" name="nombre"
@@ -45,7 +45,7 @@
 
     <mat-form-field appearance="outline">
         <mat-label>Rol</mat-label>
-        <mat-select placeholder="Rol">
+        <mat-select name="rol" #rol="ngModel" [(ngModel)]="empleado.rol" placeholder="Rol">
             <mat-option value="empleado">Empleado</mat-option>
             <mat-option value="administrador">Administrador</mat-option>
         </mat-select>
@@ -55,7 +55,8 @@
 </div>
 <div mat-dialog-actions [align]="'end'">
     <button mat-dialog-close>Cerrar</button>
-    <button style="margin-left:8px" (click)="EmpleadoEditado(empleadoEditForm)">Guardar</button>
+    <button style="margin-left:8px" (click)="EmpleadoEditado(empleadoEditForm)" 
+    [disabled]="!empleadoEditForm.form.valid">Guardar</button>
 </div>
 
 

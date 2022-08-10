@@ -1,12 +1,12 @@
 <app-cab-admin></app-cab-admin>
 <div class="contenedor">
     <h2>{{titulo}}</h2>
-    <div class="mensaje success" *ngIf="status=='success'">
+    <!-- <div class="mensaje success" *ngIf="status=='success'">
         Empleado Guardado! , para mas opciones <a href="#">click aqui</a>
     </div>
     <div class="mensaje fail" *ngIf="status=='fail'">
         Error al guardar empleado ! , para mas opciones <a href="#">click aqui</a>
-    </div>
+    </div> -->
     <form #empleadoForm="ngForm" (ngSubmit)="onSubmit(empleadoForm)">
         <p>
             <label for="nombre">Nombre</label>

@@ -29,7 +29,7 @@ export class EmpleadoServicio{
         let params = JSON.stringify(empleado);
         let headers = new HttpHeaders().set('Content-Type','application/json');
 
-        return this._http.put(this.url+'edita-empleado',{headers:headers});
+        return this._http.put(this.url+'edita-empleado',params,{headers:headers});
     }
 
     consultarEmpleado():Observable<any>{
@@ -43,5 +43,11 @@ export class EmpleadoServicio{
 
         return this._http.get(this.url+'lista-empleado',{headers:headers});
     
+    }
+    softEliminar(empleado:Empleado):Observable<any>{
+        let params = JSON.stringify(empleado);
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+
+        return this._http.put(this.url+'elimina-empleado',params,{headers:headers});
     }
 }

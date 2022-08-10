@@ -26,10 +26,15 @@ import { CabClienteComponent } from './cab-cliente/cab-cliente.component';
 import { EntradaPrincipalComponent } from './entrada-principal/entrada-principal.component';
 import { CabMainComponent } from './cab-main/cab-main.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule} from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule} from '@angular/material/input';
 import { MatSelectModule} from '@angular/material/select';
 import { DialogEmpleadoComponent } from './dialog-empleado/dialog-empleado.component';
+import { DialogGenCreacionComponent } from './dialog-gen-creacion/dialog-gen-creacion.component';
+import { DialogEliminarGenComponent } from './dialog-eliminar-gen/dialog-eliminar-gen.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -52,7 +57,9 @@ import { DialogEmpleadoComponent } from './dialog-empleado/dialog-empleado.compo
     CabClienteComponent,
     EntradaPrincipalComponent,
     CabMainComponent,
-    DialogEmpleadoComponent
+    DialogEmpleadoComponent,
+    DialogGenCreacionComponent,
+    DialogEliminarGenComponent
   ],
   imports: [
     BrowserModule,
@@ -62,9 +69,12 @@ import { DialogEmpleadoComponent } from './dialog-empleado/dialog-empleado.compo
     FormsModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
+    MatTableModule,
     MatDialogModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFormFieldModule,
+    MatPaginatorModule
   ],
   providers: [
     appRoutingProviders

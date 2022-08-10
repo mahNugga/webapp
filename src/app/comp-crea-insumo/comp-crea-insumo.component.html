@@ -9,33 +9,45 @@
             <label for="nombre">Nombre</label>
             <input type="text" name="nombre" 
             #nombre="ngModel" [(ngModel)]="insumo.nombre"
+            (ngModelChange)="insumo.nombre=$event.toLowerCase()"
             required/>
+            <span class="empleadoformErr" *ngIf="nombre.touched && !nombre.valid">
+                Debe entrar un nombre valido!
+            </span>
             
         </p>
         <p>
             <label for="descripcion">Descripcion</label>
             <input type="text" name="descripcion" 
             #descripcion="ngModel" [(ngModel)]="insumo.descripcion"
+            (ngModelChange)="insumo.descripcion=$event.toLowerCase()"
             required/>
-            
+            <span class="empleadoformErr" *ngIf="descripcion.touched && !descripcion.valid">
+                Debe entrar una descripción válida!
+            </span>
         </p>
         <p>
             <label for="costo">Costo</label>
-            <input type="text" name="costo" 
+            <input type="number" name="costo" 
             #costo="ngModel" [(ngModel)]="insumo.costo"
             required/>
-           
+            <span class="empleadoformErr" *ngIf="costo.touched && 
+            !costo.valid">
+                Debe entrar un costo válido!
+            </span>
         </p>
         <p>
             <label for="stock">Stock</label>
-            <input type="text" name="stock" 
+            <input type="number" name="stock" 
             #stock="ngModel" [(ngModel)]="insumo.stock" 
             required/>
-            
+            <span class="empleadoformErr" *ngIf="stock.touched && !stock.valid">
+                Debe entrar un stock válido!
+            </span>
         </p>
         <p>
             <label for="stockideal">Stock ideal</label>
-            <input type="text" name="stockideal" 
+            <input type="number" name="stockideal" 
             #sctockideal="ngModel" [(ngModel)]="insumo.stock_ideal"
             />
             

@@ -5,6 +5,7 @@ import { EmpleadoServicio } from '../servicios/empleado.servicio';
 import { global } from '../servicios/global';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogEmpleadoComponent } from '../dialog-empleado/dialog-empleado.component';
+import { DialogEliminarGenComponent } from '../dialog-eliminar-gen/dialog-eliminar-gen.component';
 
 @Component({
   selector: 'app-comp-consulta-empleado',
@@ -15,13 +16,16 @@ import { DialogEmpleadoComponent } from '../dialog-empleado/dialog-empleado.comp
 export class CompConsultaEmpleadoComponent implements OnInit {
   public empleados: Empleado[] = [];
   public test = ['jUAN','TONIO','MOCHO','PEPE'];
+  public gen="empleado";
   page: number = 1;
   count: number = 0;
   tableSize: number = 10;
   tableSizes: any = [5,10,15];
+
   constructor(
     private _empleadoservicio: EmpleadoServicio,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private dialogX:MatDialog
   ) { 
     
   }
@@ -48,7 +52,7 @@ export class CompConsultaEmpleadoComponent implements OnInit {
         if(response){
           this.empleados = response.listaEmpleado;
         }
-        console.log(this.empleados);
+        //console.log(this.empleados);
       },
       error=>{
         console.log(<any>error)
@@ -69,9 +73,34 @@ export class CompConsultaEmpleadoComponent implements OnInit {
   }
 
   openDialog(row :any){
+    //console.log(row);
     this.dialog.open(DialogEmpleadoComponent,{
       width:'50%',
       data:row
     });
+    this.listaEmpleado();
   }
+
+  openDialogX(action:string,row:any){
+    row.action=action;
+    row.generoInvoker='empleado';
+    const dialogref=this.dialogX.open(DialogEliminarGenComponent,{
+      data:row
+    });
+    dialogref.afterClosed().subscribe(result =>{
+      console.log(result);
+      if(result=='Eliminado'){
+        console.log('yo gano piece of notcutepie! muahaha');
+        this._empleadoservicio.softEliminar(row).subscribe(
+          response =>{
+            console.log(response);
+          },
+          error =>{
+            console.log(<any>error);
+          }
+        );
+      }
+    });
+  }
+  
 }

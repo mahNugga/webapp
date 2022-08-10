@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Empleado } from '../modelos/empleado';
 import { EmpleadoServicio } from '../servicios/empleado.servicio';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DialogEmpleadoComponent } from '../dialog-empleado/dialog-empleado.component';
+import { DialogGenCreacionComponent } from '../dialog-gen-creacion/dialog-gen-creacion.component';
 
 @Component({
   selector: 'app-crear-empleado',
@@ -14,13 +14,13 @@ export class CrearEmpleadoComponent implements OnInit  {
   public titulo:string;
   public empleado: Empleado;
   public status!: string;
-
+  public genero="Empleado";
   constructor(
     private _empleadoServicio: EmpleadoServicio,
     private dialog: MatDialog
   ) { 
     this.titulo = "Registrar nuevo empleado";
-    this.empleado = new Empleado('','','','','','', 0,new Date(),"empleado");
+    this.empleado = new Empleado('','','','','','', 0,new Date(),1);
     
   }
 
@@ -33,7 +33,9 @@ export class CrearEmpleadoComponent implements OnInit  {
         if(response.empleado){
           this.status = 'success';
           form.reset();
-          this.dialog.open(DialogEmpleadoComponent);
+          this.dialog.open(DialogGenCreacionComponent,{
+            data:this.genero
+          });
         }else{
           this.status = 'fail';
         }

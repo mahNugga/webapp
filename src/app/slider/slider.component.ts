@@ -10,11 +10,11 @@ export class SliderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    (<any>$('.galeria')).bxSlider({
+    /* (<any>$('.galeria')).bxSlider({
       mode:'fade',
       captions:false,
       slideWidth:400
-    });
+    }); */
   }
 
 }
