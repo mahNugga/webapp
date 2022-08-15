@@ -35,6 +35,8 @@ import { DialogEmpleadoComponent } from './dialog-empleado/dialog-empleado.compo
 import { DialogGenCreacionComponent } from './dialog-gen-creacion/dialog-gen-creacion.component';
 import { DialogEliminarGenComponent } from './dialog-eliminar-gen/dialog-eliminar-gen.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { HorarioComponent } from './horario/horario.component';
+import { ReservacionComponent } from './reservacion/reservacion.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     CabMainComponent,
     DialogEmpleadoComponent,
     DialogGenCreacionComponent,
-    DialogEliminarGenComponent
+    DialogEliminarGenComponent,
+    HorarioComponent,
+    ReservacionComponent
   ],
   imports: [
     BrowserModule,

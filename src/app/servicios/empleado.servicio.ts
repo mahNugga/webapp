@@ -44,6 +44,14 @@ export class EmpleadoServicio{
         return this._http.get(this.url+'lista-empleado',{headers:headers});
     
     }
+
+    listarNoadmins():Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+
+        return this._http.get(this.url+'lista-empleado-gen',{headers:headers});
+    
+    }
+
     softEliminar(empleado:Empleado):Observable<any>{
         let params = JSON.stringify(empleado);
         let headers = new HttpHeaders().set('Content-Type','application/json');

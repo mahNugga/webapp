@@ -46,8 +46,14 @@ body{
     text-transform: uppercase;
     transition: all 500ms;
 }
+#empleado nav{
+    font:200;
+    font-size: 45px;
+    padding: 15px;
+}
+
 #cliente{
-    font-size: 50px;
+    font-size: 45px;
     width: 100%;
     height: 60px;
     background:rgba(136, 176, 106,1);
@@ -56,6 +62,11 @@ body{
     position: fixed;
     text-transform: uppercase;
     transition: all 500ms;
+}
+#cliente nav{
+    font: 200;
+    font-size: 45px;
+    padding: 15px;
 }
 #admin:hover{
     background: rgba(211, 237, 191, 0.8);
@@ -152,7 +163,7 @@ body{
 /*SECCION CONTENIDOS*/
 /* body contenedor*/
 .contenedor{
-    margin-top: 90px;
+    margin-top: 80px;
     margin-left: 21%;
     margin-right: 5px;
     padding: 1px 16px;
@@ -169,21 +180,32 @@ body{
     text-align: center;
     justify-content: center;
 }
+.contenedorCli{
+    margin-top: 80px;
+    margin-right: 5px;
+    padding: 1px 16px;
+    min-width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    width: 99%;
+    overflow: auto;
+    position: absolute;
+}
 
 /*Seccion Formularios*/
 
 form label{
     display: block;
     width: 100%;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    margin-top: 9px;
+    margin-bottom: 1px;
     font-size: 13px;
 }
 form input[type="text"],
 form input[type="email"]
 {
     width: 30%;
-    padding: 5px;
+    padding: 4px;
 }
 
 form button,
@@ -467,3 +489,21 @@ form button[disabled]{
     background-color: rgba(0,0,0,0.8);
   }
   
+  /*PAGINAL PRINCIPAL CLIENTE/SERVICIOS*/
+
+  /*Servicios mostrados por pantalla*/
+  .tarjeton{
+    margin: 10px;
+    margin-bottom: 35px;
+    flex-grow: 1;
+    width: 30%;
+    height: 300px;
+  }
+
+  .tarjetonBuddy{
+    height: 250px;
+  }
+  .tarjetonOpciones{
+    padding: 10px;
+    text-align: center;
+  }

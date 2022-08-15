@@ -21,4 +21,9 @@ export class ServicioServicio{
 
         return this._http.post(this.url+'nuevo-servicio',params,{headers:headers});
     }
+
+    listaServicio():Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+        return this._http.get(this.url+'consulta-servicio',{headers:headers});
+    }
 }

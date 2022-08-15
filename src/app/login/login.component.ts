@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private _router:Router
   ) { 
     this.titulo ="Iniciar sesion";
-    this.usuario = new Usuario('','');
+    this.usuario = new Usuario(-1,'','');
   }
 
   ngOnInit(): void {
@@ -28,10 +28,13 @@ export class LoginComponent implements OnInit {
     this._usuarioServicio.revisarIngreso(this.usuario).subscribe(
       response=>{
         if(response){
-          console.log(response);
+          //console.log(response);
+          var param;
           if(response.teller==5){
-            console.log("Recordaran este dia como el usuario salvaje!");
-            this._router.navigate(['/principal-cliente']);
+            console.log("Recordaran este dia como el usuario...!");
+            param=response.usuario_c[0].id;
+            console.log(param);
+            this._router.navigate(['/principal-cliente'],{state:{id:param}});
           }
           if(response.teller==1){
             console.log("Recordaran este dia como el empleado simplon!");

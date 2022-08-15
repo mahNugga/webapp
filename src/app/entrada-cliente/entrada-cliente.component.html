@@ -1,1 +1,14 @@
 <app-cab-cliente></app-cab-cliente>
+<div class="contenedorCli">
+    <div *ngFor="let servicio of servicios" class="tarjeton">
+        <p>soy un servicio dame click uwu!</p>
+        <div class="tarjetonBuddy">
+            <p>{{servicio.nombre}}</p>
+            <p><strong>Descripcion: </strong>{{servicio.descripcion}}</p>
+            <p ><strong>Valor: $ </strong><span style="font-size: 10px;">{{servicio.precio}}</span></p>
+        </div>
+        <div class="tarjetonOpciones">
+            <button (click)="reservar(servicio)"> Reservar </button>
+        </div>
+    </div>
+</div>

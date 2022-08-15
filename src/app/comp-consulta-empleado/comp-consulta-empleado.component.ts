@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Empleado } from '../modelos/empleado';
 import { EmpleadoServicio } from '../servicios/empleado.servicio';
@@ -6,6 +6,7 @@ import { global } from '../servicios/global';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogEmpleadoComponent } from '../dialog-empleado/dialog-empleado.component';
 import { DialogEliminarGenComponent } from '../dialog-eliminar-gen/dialog-eliminar-gen.component';
+import { MatTable } from '@angular/material/table';
 
 @Component({
   selector: 'app-comp-consulta-empleado',
@@ -13,7 +14,7 @@ import { DialogEliminarGenComponent } from '../dialog-eliminar-gen/dialog-elimin
   styleUrls: ['./comp-consulta-empleado.component.scss'],
   providers: [EmpleadoServicio]
 })
-export class CompConsultaEmpleadoComponent implements OnInit {
+export class CompConsultaEmpleadoComponent implements OnInit,AfterViewInit {
   public empleados: Empleado[] = [];
   public test = ['jUAN','TONIO','MOCHO','PEPE'];
   public gen="empleado";
@@ -22,6 +23,8 @@ export class CompConsultaEmpleadoComponent implements OnInit {
   tableSize: number = 10;
   tableSizes: any = [5,10,15];
 
+  @ViewChild(MatTable) table!: MatTable<any>;
+
   constructor(
     private _empleadoservicio: EmpleadoServicio,
     private dialog: MatDialog,
@@ -29,10 +32,14 @@ export class CompConsultaEmpleadoComponent implements OnInit {
   ) { 
     
   }
+  ngAfterViewInit(): void {
+    //this.table.renderRows();
+  }
 
   ngOnInit(): void {
     this.listaEmpleado();
   }
+
   consultaEmpleado(){
     this._empleadoservicio.consultarEmpleado().subscribe(
       response=>{
@@ -78,7 +85,8 @@ export class CompConsultaEmpleadoComponent implements OnInit {
       width:'50%',
       data:row
     });
-    this.listaEmpleado();
+    
+    
   }
 
   openDialogX(action:string,row:any){
@@ -94,6 +102,7 @@ export class CompConsultaEmpleadoComponent implements OnInit {
         this._empleadoservicio.softEliminar(row).subscribe(
           response =>{
             console.log(response);
+            //this.table.renderRows();
           },
           error =>{
             console.log(<any>error);

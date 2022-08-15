@@ -15,12 +15,15 @@ import { EntradaClienteComponent } from "./entrada-cliente/entrada-cliente.compo
 import { EntradaEmpleadoComponent } from "./entrada-empleado/entrada-empleado.component";
 import { EntradaPrincipalComponent } from "./entrada-principal/entrada-principal.component";
 import { LoginComponent } from "./login/login.component";
+import { HorarioComponent } from "./horario/horario.component";
+import { ReservacionComponent } from "./reservacion/reservacion.component";
 
 //Configuracion de rutas
 const appRoutes: Routes = [
     {path:'', component: LoginComponent},
     {path:'registro', component:registroComponent},
     {path:'principal',component:EntradaPrincipalComponent},
+    {path:'reservar',component:ReservacionComponent},
     {path:'principal-cliente',component:EntradaClienteComponent},
     {path:'principal-empleado',component:EntradaEmpleadoComponent},
     {path:'principal-admin',component:CompPrincipalEmpleadoComponent},
@@ -29,6 +32,7 @@ const appRoutes: Routes = [
     {path:'crear-insumo',component:CompCreaInsumoComponent},
     {path:'consulta-insumo',component:CompConsultaInsumoComponent},
     {path:'crear-servicio',component:CompCreaServicioComponent},
+    {path:'crear-horario',component:HorarioComponent},
     {path: '**', component:logearComponent}
 ];
 

@@ -1,0 +1,53 @@
+<app-cab-admin></app-cab-admin>
+
+<div class="contenedor">
+    <h2>{{titulo}}</h2>
+    <form #horarioForm="ngForm" (ngSubmit)="onSubmit(horarioForm)">
+        <p>
+            <label for="nombre">Nombre descriptivo</label>
+            <input type="text" name="nombre"
+             #nombre="ngModel" [(ngModel)]="horario.nombre"
+            required/>
+            <span class="empleadoformErr" *ngIf="nombre.touched && !nombre.valid">
+                Debe entrar un nombre de horario valido!
+            </span>
+        </p>
+        <p>
+            <label for="descripcion">Descripcion</label>
+            <input type="text" name="descripcion"
+             #descripcion="ngModel" [(ngModel)]="horario.descripcion"/>
+            
+        </p>
+        <p>
+            <label for="rango_ini">Rango de fecha de Inicio (Opcional)</label>
+            <input type="date"
+            #rango_inicio="ngModel" [(ngModel)]="horario.rango_inicio"/>
+        </p>
+        <p>
+            <label for="rango_fin">Rango de fecha de Salida (Opcional)</label>
+            <input type="date"
+            #rango_fin="ngModel" [(ngModel)]="horario.rango_fin"/>
+        </p>
+            <label>Hora inicio</label>
+            <input type="time" name="horaIni"
+            #horaIni="ngModel" [(ngModel)]="horario.hora_inicio"/>
+        <p>
+            <label>Hora salida</label>
+            <input type="time" name="horaFin"
+             #horaFin="ngModel" [(ngModel)]="horario.hora_fin"
+            />
+            <span></span>
+        </p>
+        <p>
+            <label for="empleado">Seleccionar empleado para asignar Horario</label>
+            <select name="empleadoSeleccion" id="empleadoHorario"
+            #empleadoHorario="ngModel" [(ngModel)]="horario.empleado_id">
+                <option *ngFor="let empleado of empleados;let i=index" 
+                [ngValue]="empleado.id"
+                >{{i+1}} - {{empleado.apellido}} {{empleado.nombre}}</option>
+            </select>
+        </p>
+        <input type="submit" value="Guardar" [disabled]="!horarioForm.form.valid"/>
+    </form>
+
+</div>
