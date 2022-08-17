@@ -17,6 +17,7 @@ import { EntradaPrincipalComponent } from "./entrada-principal/entrada-principal
 import { LoginComponent } from "./login/login.component";
 import { HorarioComponent } from "./horario/horario.component";
 import { ReservacionComponent } from "./reservacion/reservacion.component";
+import { CompConsultaServicioComponent } from "./comp-consulta-servicio/comp-consulta-servicio.component";
 
 //Configuracion de rutas
 const appRoutes: Routes = [
@@ -32,6 +33,7 @@ const appRoutes: Routes = [
     {path:'crear-insumo',component:CompCreaInsumoComponent},
     {path:'consulta-insumo',component:CompConsultaInsumoComponent},
     {path:'crear-servicio',component:CompCreaServicioComponent},
+    {path:'consulta-servicio',component:CompConsultaServicioComponent},
     {path:'crear-horario',component:HorarioComponent},
     {path: '**', component:logearComponent}
 ];

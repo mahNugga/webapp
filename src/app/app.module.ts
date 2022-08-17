@@ -37,6 +37,7 @@ import { DialogEliminarGenComponent } from './dialog-eliminar-gen/dialog-elimina
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { HorarioComponent } from './horario/horario.component';
 import { ReservacionComponent } from './reservacion/reservacion.component';
+import { ConsultaClienteComponent } from './consulta-cliente/consulta-cliente.component';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { ReservacionComponent } from './reservacion/reservacion.component';
     DialogGenCreacionComponent,
     DialogEliminarGenComponent,
     HorarioComponent,
-    ReservacionComponent
+    ReservacionComponent,
+    ConsultaClienteComponent
   ],
   imports: [
     BrowserModule,
