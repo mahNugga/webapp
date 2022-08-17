@@ -47,7 +47,7 @@ export class HorarioComponent implements OnInit {
         }},
         error:(e)=> console.log(e)
       }
-    );
+    ); 
   }
 
   listaEmpleado(){
