@@ -1,28 +1,72 @@
-<h2>Componente de Registro</h2>
-<h2>{{sub_cabecera}}</h2>
+<div class="tituloregistro">
+    <h1>{{titulo}}</h1>
+    <h2>{{sub_cabecera}}</h2>
+</div>
 
 <section class="signup">
-    <h2>Registro</h2>
-    <form action="signup.js" method="post">
+    <form #registroForm (ngSubmit)="registrar(registroForm)">
         <label>Registre sus datos de usuario</label>
-        <br/>
-        <input type="text" name="email" placeholder="Correo elecronico">
-        <br/>
-        <input type="text" name="nombre" placeholder="Nombres">
-        <br/>
-        <input type="text" name="apellido" placeholder="Apellidos"  required pattern="[a-zA-Z]+"/>
-        <!--<span *ngIf="apellidos.touched && !apellidos.valid">
-
-        </span>-->
-        <br/>
-        <input type="password" name="pwd" placeholder="Contrasena">
-        <br/>
-        <input type="password" name="pwd" placeholder="Re-ingresar Contrasena">
-        <br/>
+        <p>
+            <label for="correo">Correo</label>
+            <input type="email" name="correo"
+            #correo="ngModel"[(ngModel)]="cliente.correo"
+             placeholder="correo/e-mail" required/>
+             <span *ngIf="correo.touched && !correo.valid">
+                <strong>correo debe ser valido!</strong> 
+             </span>
+             
+        </p>
+        <p>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre"
+            #nombre="ngModel"[(ngModel)]="cliente.nombre"
+             placeholder="Nombre" required/>
+             <span *ngIf="nombre.touched && !nombre.valid">
+                <strong>nombre debe ser valido!</strong> 
+             </span>
+             
+        </p>
+        <p>
+            <label for="apellido">Apellido</label>
+            <input type="text" name="nombre"
+            #apellido="ngModel"[(ngModel)]="cliente.apellido"
+             placeholder="Apellido" required/>
+             <span *ngIf="apellido.touched && !apellido.valid">
+                <strong>Apellido debe ser valido!</strong> 
+             </span>
+             
+        </p>
+        <p>
+            <label for="pass">Contraseña</label>
+            <input type="password" name="pass"
+            #pass="ngModel"[(ngModel)]="cliente.password"
+             placeholder="Contraseña" required/>
+             <span *ngIf="pass.touched && !pass.valid">
+                <strong>Debe ingresar una Contraseña!</strong> 
+             </span>
+             
+        </p>
+        <p>
+            <label for="telefono">Telefono</label>
+            <input type="text" name="nombre"
+            #telefono="ngModel"[(ngModel)]="cliente.telefono"
+             placeholder="Telefono" required/>
+             <span *ngIf="telefono.touched && !telefono.valid">
+                <strong>Debe ingresar un numero de telefono!</strong> 
+             </span>
+             
+        </p>
         <label>Datos Adicionales(Opcionales)</label>
-        <br/>
-        <input type="date" name="date" placeholder="Fecha nacimiento">
-        <br/>
+        <p>
+            <label for="direccion">Direccion</label>
+            <input type="text" name="nombre"
+            #direccion="ngModel"[(ngModel)]="cliente.direccion"
+             placeholder="Direccion" />
+<!--              <span *ngIf="direccion.touched && !direccion.valid">
+                <strong>nombre debe ser valido!</strong> 
+             </span> -->
+             
+        </p>
         <button type="submit" name="submit" >Registrar</button>
         
         <br/>

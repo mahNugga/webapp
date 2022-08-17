@@ -11,7 +11,9 @@ import { EmpleadoC } from '../modelos/empleadoC';
 })
 export class ReservacionComponent implements OnInit {
 
+  public horarios!:Horario;
   public fechacomparar:any;
+  public logico=1;
   constructor(
     private _horarioServicio:HorarioServicio
   ) { }
@@ -27,6 +29,10 @@ export class ReservacionComponent implements OnInit {
         if(n.fechin){
           console.log("aqui esta lo chido");
           console.log(n);
+          this.horarios=n.fechin;
+          this.logico=5;
+          console.log(this.horarios);
+          console.log(this.logico);
         }
       },
       error:(e)=> console.log(e)

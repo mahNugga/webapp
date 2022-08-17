@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogGenCreacionComponent } from '../dialog-gen-creacion/dialog-gen-creacion.component';
 import { EmpleadoC } from '../modelos/empleadoC';
 import { EmpleadoServicio } from '../servicios/empleado.servicio';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-horario',
@@ -25,7 +26,7 @@ export class HorarioComponent implements OnInit {
     private dialog:MatDialog
   ) { 
     this.titulo="Registrar nuevo horario para determinado empleado(s)";
-    this.horario = new Horario('','',new Date(),new Date(),0,0,'',1,-1);
+    this.horario = new Horario('','',new Date(),new Date(),new Date(),0,'',1,-1);
   }
 
   ngOnInit(): void {
@@ -36,6 +37,8 @@ export class HorarioComponent implements OnInit {
 
   onSubmit(form:any){
     console.log(form);
+    var variant=formatDate(this.horario.rango_fin,'yyyy-MM-dd hh:mm:ss z','en-US'); 
+    this.horario.rango_fin=variant;
     console.log(this.horario);
     this._horarioServicio.guardarHorario(this.horario).subscribe(
       {
@@ -47,7 +50,7 @@ export class HorarioComponent implements OnInit {
         }},
         error:(e)=> console.log(e)
       }
-    ); 
+    );  
   }
 
   listaEmpleado(){

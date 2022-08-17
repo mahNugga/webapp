@@ -38,6 +38,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HorarioComponent } from './horario/horario.component';
 import { ReservacionComponent } from './reservacion/reservacion.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

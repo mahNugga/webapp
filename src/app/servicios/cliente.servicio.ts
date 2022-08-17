@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { ClienteBasic } from "../modelos/clienteBasic";
 import { global } from "./global";
+import { ClienteRegistro } from "../modelos/clienteregistro";
 
 @Injectable()
 export class ClienteServicio{
@@ -20,5 +21,13 @@ export class ClienteServicio{
         let headers = new HttpHeaders()
         .set('Content-Type','application/json');
         return this._http.get(this.url+'cliente-basicinfo',{headers:headers,params:param});
+    }
+
+    registranuevo(clienteregistro:ClienteRegistro):Observable<any>{
+        let params = JSON.stringify(clienteregistro);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.post(this.url+'nuevo-cliente',params,{headers:headers});
     }
 }

@@ -6,3 +6,7 @@
     <label for="fecha">Elija el dia que desea reservar el servicio : _servicio.name</label>
     <input name="fecha" type="date" [(ngModel)]="fechacomparar" (ngModelChange)="fechas()"/>
 </p>
+<h2> Tabla</h2>
+<div *ngIf="logico==5"><p>{{horarios.hora_inicio}}</p></div>
+<p>{{horarios.empleado_id}}</p>
+<p>End of the line</p>
