@@ -16,7 +16,7 @@ export class CabClienteComponent implements OnInit {
     private _clienteServicio: ClienteServicio
   ) { 
     this.ruta=this.route.getCurrentNavigation()?.extras?.state?.['id']
-    //console.log(this.ruta);
+    console.log('la ruta de esta es: '+this.ruta);
   }
 
   ngOnInit(): void {

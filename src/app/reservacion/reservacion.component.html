@@ -3,10 +3,36 @@
 <p> Servicio a reservar:</p>
 
 <p>
-    <label for="fecha">Elija el dia que desea reservar el servicio : _servicio.name</label>
+    <label for="fecha">Elija el dia que desea reservar el servicio : {{extras.nombre}}</label>
     <input name="fecha" type="date" [(ngModel)]="fechacomparar" (ngModelChange)="fechas()"/>
 </p>
 <h2> Tabla</h2>
-<div *ngIf="logico==5"><p>{{horarios.hora_inicio}}</p></div>
-<p>{{horarios.empleado_id}}</p>
+<div class="contenedorinfo">
+    <div *ngIf="logico">
+        <p>{{horarios.hora_inicio}}</p>
+        Hoy se sale!
+        <table>
+            <body>
+                <tr *ngFor="let hora of elegido">
+                    <th>
+                        {{hora+':00'}}
+                    </th>
+                    <td (click)="elejirHora(hora)"
+                        [ngClass]="status ? 'elegido':'nada'"
+                        id="a{{hora}}"><span></span></td>
+                </tr>
+            </body>
+        </table>
+        
+        <div class="controlesreservar">
+            <button class="btnreservar" (click)="confirmarReserva()">Reservar</button>
+        </div>
+         
+    </div>
+    <span class="info">info</span>
+    
+</div>
+
+<!-- <p>{{horarios.empleado_id}}</p> -->
 <p>End of the line</p>
+

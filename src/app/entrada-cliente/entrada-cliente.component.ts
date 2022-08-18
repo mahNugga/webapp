@@ -42,7 +42,9 @@ export class EntradaClienteComponent implements OnInit {
   }
 
   reservar(servicioprocesado:Servicio){
-    this._router.navigate(['/reservar']);
+    console.log(servicioprocesado);
+    var param = servicioprocesado;
+    this._router.navigate(['/reservar'],{state:{serv:servicioprocesado}});
   }
 
 }

@@ -38,6 +38,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HorarioComponent } from './horario/horario.component';
 import { ReservacionComponent } from './reservacion/reservacion.component';
 import { ConsultaClienteComponent } from './consulta-cliente/consulta-cliente.component';
+import { ReservaConfirmacionComponent } from './reserva-confirmacion/reserva-confirmacion.component';
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { ConsultaClienteComponent } from './consulta-cliente/consulta-cliente.co
     DialogEliminarGenComponent,
     HorarioComponent,
     ReservacionComponent,
-    ConsultaClienteComponent
+    ConsultaClienteComponent,
+    ReservaConfirmacionComponent
   ],
   imports: [
     BrowserModule,

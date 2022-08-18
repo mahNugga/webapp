@@ -1,0 +1,55 @@
+tr:nth-child(even) th {
+    color: #ccc;
+    font-weight: normal;
+  }
+  
+  th,
+  td {
+    padding: 0.5rem 1rem;
+    
+  }
+  
+  th {
+    font-weight: normal;
+    border-top: thin dotted #ccc;
+  }
+
+  td{
+    min-width: 50px;
+    width: 100px;
+    transition: all .3s ease-out;
+  }
+  td:hover{
+    cursor: pointer;
+    border-top: thin dotted #ccc;
+    border-right: thin dotted #ccc;
+    border-bottom: thin dotted #ccc;
+    background-color: rgb(189, 209, 233);
+  }
+
+  .elegido{
+    background-color:  #fff;
+  }
+  .nada{
+    background-color: #fff;
+  }
+
+  .info{
+    display: inline-block;
+  }
+  .contenedorinfo{
+    display: flex;
+    flex-direction: row;
+  }
+  .controlesreservar{
+    text-align: center;
+  }
+
+  .btnreservar{
+    font-size: 15px;
+    padding: 5px;
+    margin-top: 15px;
+    color: white;
+    background: #88B06A;
+    cursor: pointer;
+  }

@@ -1,1 +1,52 @@
-<p>consulta-cliente works!</p>
+
+<app-cab-admin></app-cab-admin>
+<div class="contenedor">
+    <h2>Servicios</h2>
+    <div>
+        <select (change)="onTableSizeChange($event)">
+            <option *ngFor="let size of tableSizes">
+                {{size}}
+            </option>
+        </select>
+    </div>
+    <table class="empleadoTabla" #empleadoTable>
+        <thead>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Apellido
+            </th>
+            <th>
+                Correo
+            </th>
+            <th>
+                Direccion
+            </th>
+            <th>
+                Telefono
+            </th>
+            <th>
+                Contraseña
+            </th> 
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes | paginate: {itemsPerPage: tableSize,
+                    currentPage: page, totalItems: count}; let i = index">
+                <td class="nombres">{{cliente.nombre}}</td><td class="nombres">{{cliente.apellido}}</td>
+                <td class="correo">{{cliente.correo}}</td><td class="centrar">{{cliente.direccion}}</td>
+                <td>{{cliente.telefono}}</td><td>{{cliente.password}}</td>
+                <!-- <td class="limite" *ngIf="empleado.rol==1">Empleado</td><td *ngIf="empleado.rol==7"> Administrador</td> -->
+                <td class="borderless"><button ><span class="editaempleado" ></span></button></td>
+                <!-- <td class="borderless"><button class="lasttd" (click)="openDialogX('elimina',empleado)"><span class="eliminaempleado"></span></button></td> -->
+            </tr>
+        </tbody>
+    </table>
+    <div>
+        <pagination-controls
+            previousLabel="Anterior"
+            nextLabel="Siguiente"
+            (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+    </div>
+</div>

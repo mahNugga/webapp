@@ -30,4 +30,11 @@ export class ClienteServicio{
 
         return this._http.post(this.url+'nuevo-cliente',params,{headers:headers});
     }
+
+    listarClientes():Observable<any>{
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.get(this.url+'consulta-cliente',{headers:headers});
+    }
 }
