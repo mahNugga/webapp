@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http'
 import { Observable } from "rxjs";
 import { Reservaciondb } from "../modelos/reservaciondb";
 import { global } from "./global";
@@ -19,5 +19,14 @@ export class ReservacionServicio{
         let headers = new HttpHeaders().set('Content-Type','application/json');
 
         return this._http.post(this.url+'/reservar',params,{headers:headers});
+    }
+    mostrarReservaCliente(id:any):Observable<any>{
+        let param = new HttpParams()
+        .set("id",id);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.get(this.url+'consulta-reservacioncliente',{headers:headers,params:param});
+
     }
 }

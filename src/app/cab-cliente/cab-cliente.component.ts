@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClienteServicio } from '../servicios/cliente.servicio';
+import { ReservacionServicio } from '../servicios/reservacion.servicio';
 
 @Component({
   selector: 'app-cab-cliente',
   templateUrl: './cab-cliente.component.html',
   styleUrls: ['./cab-cliente.component.scss'],
-  providers: [ClienteServicio]
+  providers: [ClienteServicio,ReservacionServicio]
 })
 export class CabClienteComponent implements OnInit {
   private ruta:any;
   public nombreCab="";
+  public cliente_id!:number;
   constructor(
     private route:Router,
-    private _clienteServicio: ClienteServicio
+    private _clienteServicio: ClienteServicio,
+    private _reservaServicio:ReservacionServicio
   ) { 
     this.ruta=this.route.getCurrentNavigation()?.extras?.state?.['id']
     console.log('la ruta de esta es: '+this.ruta);
@@ -21,6 +24,7 @@ export class CabClienteComponent implements OnInit {
 
   ngOnInit(): void {
     this.nombreCabCliente(this.ruta);
+    this.cliente_id=this.ruta;
     //console.log("mmmmmmm");
   }
 
@@ -40,4 +44,11 @@ export class CabClienteComponent implements OnInit {
     });
   }
 
+  mostrarReserva(id:number){
+    this._reservaServicio.mostrarReservaCliente(id).subscribe({
+      next:(n)=>{
+        this.route.navigate(['reservacion-cliente'],{state:{reserva:n}});
+      },error:(e)=>console.log(e)
+    });
+  }
 }

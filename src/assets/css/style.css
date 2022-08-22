@@ -60,6 +60,7 @@ body{
     color:rgba(230, 232, 228, 0.8);
     z-index: 50;
     position: fixed;
+    justify-content: space-between;
     text-transform: uppercase;
     transition: all 500ms;
 }

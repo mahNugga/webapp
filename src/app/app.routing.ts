@@ -20,6 +20,7 @@ import { ReservacionComponent } from "./reservacion/reservacion.component";
 import { CompConsultaServicioComponent } from "./comp-consulta-servicio/comp-consulta-servicio.component";
 import { ConsultaClienteComponent } from "./consulta-cliente/consulta-cliente.component";
 import { ReservaConfirmacionComponent } from "./reserva-confirmacion/reserva-confirmacion.component";
+import { MostrarReservaClienteComponent } from "./mostrar-reserva-cliente/mostrar-reserva-cliente.component";
 
 //Configuracion de rutas
 const appRoutes: Routes = [
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
     {path:'registro', component:registroComponent},
     {path:'principal',component:EntradaPrincipalComponent},
     {path:'reservar',component:ReservacionComponent},
+    {path:'reservacion-cliente',component:MostrarReservaClienteComponent},
     {path:'confirmar-reserva',component:ReservaConfirmacionComponent},
     {path:'principal-cliente',component:EntradaClienteComponent},
     {path:'principal-empleado',component:EntradaEmpleadoComponent},

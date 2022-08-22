@@ -12,10 +12,12 @@ import { Router } from '@angular/router';
 export class EntradaClienteComponent implements OnInit {
   public servicios : Servicio[]= [];
   public losdiv=[];
+  public cliente_id!:number;
   constructor(
     private _servicioServicio : ServicioServicio,
     private _router:Router
   ) {
+      this.cliente_id = this._router.getCurrentNavigation()?.extras?.state?.['id']
       
    }
 
@@ -44,7 +46,7 @@ export class EntradaClienteComponent implements OnInit {
   reservar(servicioprocesado:Servicio){
     console.log(servicioprocesado);
     var param = servicioprocesado;
-    this._router.navigate(['/reservar'],{state:{serv:servicioprocesado}});
+    this._router.navigate(['/reservar'],{state:{serv:servicioprocesado,id:this.cliente_id}});
   }
 
 }

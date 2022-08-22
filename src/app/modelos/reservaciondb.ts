@@ -4,6 +4,7 @@ export class Reservaciondb{
        public notas:string,
        public mensaje:string,
        public fechaseleccion: any,
+       public hora:number,
        public descuento:number,
        public subtotal:number,
        public iva:number,

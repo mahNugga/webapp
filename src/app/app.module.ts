@@ -39,6 +39,7 @@ import { HorarioComponent } from './horario/horario.component';
 import { ReservacionComponent } from './reservacion/reservacion.component';
 import { ConsultaClienteComponent } from './consulta-cliente/consulta-cliente.component';
 import { ReservaConfirmacionComponent } from './reserva-confirmacion/reserva-confirmacion.component';
+import { MostrarReservaClienteComponent } from './mostrar-reserva-cliente/mostrar-reserva-cliente.component';
 
 
 @NgModule({
@@ -68,7 +69,8 @@ import { ReservaConfirmacionComponent } from './reserva-confirmacion/reserva-con
     HorarioComponent,
     ReservacionComponent,
     ConsultaClienteComponent,
-    ReservaConfirmacionComponent
+    ReservaConfirmacionComponent,
+    MostrarReservaClienteComponent
   ],
   imports: [
     BrowserModule,

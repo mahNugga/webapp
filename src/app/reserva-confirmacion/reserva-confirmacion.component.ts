@@ -18,7 +18,7 @@ export class ReservaConfirmacionComponent implements OnInit {
     private _reservarservicio:ReservacionServicio
   ) { 
     this.extras=this._ruta.getCurrentNavigation()?.extras.state?.['re'];
-    this.reservacion = new Reservaciondb('','','mensaje:',0,0,0,12,0,new Date(),2,5,2);
+    this.reservacion = new Reservaciondb('','','mensaje:',0,this.extras.horaseleccion,0,0,12,0,new Date(),this.extras.servicio_id,this.extras.empleado_id,this.extras.cliente_id);
   }
 
   ngOnInit(): void {

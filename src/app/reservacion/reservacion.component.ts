@@ -20,8 +20,10 @@ export class ReservacionComponent implements OnInit {
   public horaNeo: any;
   public iniciohoraTabla:string='';
   public finhoraTabla:string='';
+  public empleado_id!:number;
   public status=false;
   public extras:any;
+  public cliente_id:number;
   public reserva:Reservacion;
   constructor(
     private _horarioServicio:HorarioServicio,
@@ -29,9 +31,10 @@ export class ReservacionComponent implements OnInit {
     private _ruta:Router
   ) { 
     this.extras=this._ruta.getCurrentNavigation()?.extras.state?.['serv'];
+    this.cliente_id = this._ruta.getCurrentNavigation()?.extras.state?.['id'];
     console.log('esto viene desde entrada cliente: '+this.extras);
     console.log(this.extras);
-    this.reserva = new Reservacion('',0,0,0,-1,0,-1,new Date(),0,1);
+    this.reserva = new Reservacion('',0,0,0,-1,0,-1,new Date(),0,1,-1);
   }
 
   ngOnInit(): void {
@@ -64,11 +67,19 @@ export class ReservacionComponent implements OnInit {
               this.iniciohoraTabla = this.iniciohoraTabla.slice(0,2);
               this.finhoraTabla = element.hora_fin;
               this.finhoraTabla = this.finhoraTabla.slice(0,2);
+              this.empleado_id = element.empleado_id; 
             }if(element.hora_inicio=='10:00:00'){
               this.iniciohoraTabla = element.hora_inicio;
               this.iniciohoraTabla = this.iniciohoraTabla.slice(0,2);
               this.finhoraTabla = element.hora_fin;
               this.finhoraTabla = this.finhoraTabla.slice(0,2);
+              this.empleado_id = element.empleado_id; 
+            }if(element.hora_inicio=='09:00:00'){
+              this.iniciohoraTabla = element.hora_inicio;
+              this.iniciohoraTabla = this.iniciohoraTabla.slice(0,2);
+              this.finhoraTabla = element.hora_fin;
+              this.finhoraTabla = this.finhoraTabla.slice(0,2);
+              this.empleado_id = element.empleado_id; 
             }
             console.log(this.iniciohoraTabla+' -hasta- '+this.finhoraTabla);
             
@@ -78,7 +89,7 @@ export class ReservacionComponent implements OnInit {
           if(arreglo.length>0){
             console.log('buggyman');
             index = <number><unknown>this.finhoraTabla - <number><unknown>this.iniciohoraTabla;
-            console.log(index);
+            //console.log(index);
             var horas=parseInt(this.iniciohoraTabla);
             for(var i=0;i<index;i++){
               this.elegido[i]=horas;
@@ -118,7 +129,11 @@ export class ReservacionComponent implements OnInit {
     this.reserva.duracion=this.extras.hora;
     this.reserva.precio=this.extras.precio;
     this.reserva.total=(this.extras.precio*0.12)+this.extras.precio;
+    this.reserva.empleado_id = this.empleado_id;
+    this.reserva.cliente_id = this.cliente_id;
+    this.reserva.servicio_id = this.extras.id;
     console.log(this.reserva);
     this._ruta.navigate(['confirmar-reserva'],{state:{re:this.reserva}});
   }
-}
+}  
+ 

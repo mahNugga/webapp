@@ -9,6 +9,7 @@ export class Reservacion{
        public cliente_id: number,
        public fecha_creacion: Date,
        public total:number,
-       public estado: number
+       public estado: number,
+       public servicio_id:number
     ){}
 }
