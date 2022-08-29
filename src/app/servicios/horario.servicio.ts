@@ -29,4 +29,12 @@ export class HorarioServicio{
         return this._http.get(this.url+'verifica-fechas',{headers:headers,params:param});
     }
 
+    mostrarHorarioEmpleado(id:any):Observable<any>{
+        let param = new  HttpParams()
+        .set("id",id);
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+
+        return this._http.get(this.url+'consulta-horarioempleado',{headers:headers,params:param});
+    }
+
 }

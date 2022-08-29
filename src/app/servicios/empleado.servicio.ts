@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http'
 import { Observable } from "rxjs";
 import { Empleado } from "../modelos/empleado";
 import { global } from "./global";
@@ -57,5 +57,13 @@ export class EmpleadoServicio{
         let headers = new HttpHeaders().set('Content-Type','application/json');
 
         return this._http.put(this.url+'elimina-empleado',params,{headers:headers});
+    }
+
+    credencialesCabEmpleado(id:number):Observable<any>{
+        let param = new HttpParams()
+        .set("id",id);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+        return this._http.get(this.url+'empleado-info',{headers:headers,params:param});
     }
 }

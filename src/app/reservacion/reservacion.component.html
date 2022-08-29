@@ -1,16 +1,27 @@
-<p>hombres trabajando!</p>
+<!-- <p>hombres trabajando!</p> -->
 
-<p> Servicio a reservar:</p>
+<div class="paleta">
+    <div class="contenedorSimple">
+        <div class="tituloyAdicionalSimple">
+            <h2> Servicio a reservar:</h2>
+            <button class="btnregreso" (click)="volver()"><span class="elChuache"></span></button>
+        </div>
 
-<p>
-    <label for="fecha">Elija el dia que desea reservar el servicio : {{extras.nombre}}</label>
-    <input name="fecha" type="date" [(ngModel)]="fechacomparar" (ngModelChange)="fechas()"/>
-</p>
-<h2> Tabla</h2>
+        <div class="subCabecera">
+            <p>
+                <label for="fecha">Elija el dia que desea reservar el servicio : <strong>{{extras.nombre}}</strong> </label>
+            </p>
+            <p>
+                <input name="fecha" type="date" [(ngModel)]="fechacomparar" (ngModelChange)="fechas()"/>
+            </p>
+            <h2> Cuadro de Horas Disponibles</h2>
+        </div>
+
+
 <div class="contenedorinfo">
     <div *ngIf="logico">
         <p>{{horarios.hora_inicio}}</p>
-        Hoy se sale!
+        <!-- Hoy se sale! -->
         <table>
             <body>
                 <tr *ngFor="let hora of elegido">
@@ -32,7 +43,9 @@
     <span class="info">info</span>
     
 </div>
+    </div>
+</div>
 
 <!-- <p>{{horarios.empleado_id}}</p> -->
-<p>End of the line</p>
+<!-- <p>End of the line</p> -->
 

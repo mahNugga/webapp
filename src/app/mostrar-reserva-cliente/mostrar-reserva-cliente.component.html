@@ -1,45 +1,54 @@
 <!-- <p>mostrar-reserva-cliente works!</p> -->
 
-<h2>Reservaciones Realizadas</h2>
-    
-      <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource" matSort>
-      
-          <!-- nombre Column -->
-          <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Nombre Servicio</strong> </th>
-            <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
-          </ng-container>
-      
-          <!-- descripcion Column -->
-          <ng-container matColumnDef="hora">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Duracion </strong></th>
-            <td mat-cell *matCellDef="let row"> {{row.hora}} </td>
-          </ng-container>
-      
-          <!-- costo Column -->
-          <ng-container matColumnDef="fecha">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Fecha Reservada</strong>  </th>
-            <td mat-cell *matCellDef="let row"> {{row.fecha}} </td>
-          </ng-container>
-      
-          <!-- Stock Column -->
-          <ng-container matColumnDef="cliente_id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Hora escogida</strong> </th>
-            <td mat-cell *matCellDef="let row"> {{row.cliente_id}} </td>
-          </ng-container>
-          
-          <!-- Stock Ideal Column -->
-          <!-- <ng-container matColumnDef="stock_ideal">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Stock Ideal</strong></th>
-            <td mat-cell *matCellDef="let row"> {{row.stock_ideal}} </td>
-          </ng-container> -->
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      
-          <!-- Row shown when there is no matching data. -->
-          <!-- <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-          </tr> -->
-        </table>
+
+      <div class="paleta">
+        <div class="contenedorSimple">
+          <div class="tituloyAdicionalSimple">
+            <h2>Reservaciones Realizadas</h2>
+            <button class="btnregreso" (click)="volver()"><span class="elChuache"></span></button>
+          </div>
+    
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+          
+              <!-- nombre Column -->
+              <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Nombre Servicio</strong> </th>
+                <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+              </ng-container>
+          
+              <!-- descripcion Column -->
+              <ng-container matColumnDef="hora">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Duracion </strong></th>
+                <td mat-cell *matCellDef="let row"> {{row.hora}} </td>
+              </ng-container>
+          
+              <!-- costo Column -->
+              <ng-container matColumnDef="fecha">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Fecha Reservada</strong>  </th>
+                <td mat-cell *matCellDef="let row"> {{row.fecha}} </td>
+              </ng-container>
+          
+              <!-- Stock Column -->
+              <ng-container matColumnDef="cliente_id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Hora escogida</strong> </th>
+                <td mat-cell *matCellDef="let row"> {{row.cliente_id}} </td>
+              </ng-container>
+              
+              <!-- Stock Ideal Column -->
+              <!-- <ng-container matColumnDef="stock_ideal">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Stock Ideal</strong></th>
+                <td mat-cell *matCellDef="let row"> {{row.stock_ideal}} </td>
+              </ng-container> -->
+    
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          
+              <!-- Row shown when there is no matching data. -->
+              <!-- <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+              </tr> -->
+            </table>
+        </div>
+      </div>

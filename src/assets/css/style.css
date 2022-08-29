@@ -3,6 +3,24 @@
 
 /*IMPORTS*/
 @import '@angular/cdk/overlay-prebuilt.css';
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,500&display=swap'); */
+
+@font-face {
+    font-family: Robot;
+    src: url(../fonts/Roboto-Medium.ttf) format('truetype');
+}
+@font-face {
+    font-family: RobotalicMed;
+    src: url(../fonts/Roboto-MediumItalic.ttf) format('truetype');
+}
+@font-face {
+    font-family: Robotmonothintalic;
+    src: url(../fonts/RobotoMono-ThinItalic.ttf) format('truetype');
+}
+@font-face {
+    font-family: Robotmonolightitalic;
+    src: url(../fonts/RobotoMono-LightItalic.ttf) format('truetype');
+}
 *{
     margin: 0px;
     padding: 0px;
@@ -48,8 +66,16 @@ body{
 }
 #empleado nav{
     font:200;
-    font-size: 45px;
+    font-size: 39px;
     padding: 15px;
+}
+.navempleado{
+    display: flex;
+    width: 100%;
+}
+.navempleado button{
+    align-items: flex-end;
+    margin-left: 15%;
 }
 
 #cliente{
@@ -66,8 +92,35 @@ body{
 }
 #cliente nav{
     font: 200;
-    font-size: 45px;
-    padding: 15px;
+    font-size: 37px;
+    padding: 14px;
+}
+.navcliente{
+    display: flex;
+    width: 100%;
+}
+.navcliente button{
+    align-items: flex-end;
+    margin-left: 5%;
+}
+#btnConsultaReserva{
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 13px;
+    overflow: hidden;
+    border-radius: 20px 100px;
+    transition: 0.2s;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #ffffff;
+    background-color: #0f6f46;
+}
+#btnConsultaReserva:hover{
+    color:rgb(255, 255, 255);
+    background: rgb(24, 170, 107);
+    box-shadow:
+    0 0 20px rgb(34, 225, 222), 0 0 80px rgb(34, 225, 222),
+    0 0 160px rgb(34, 225, 222), 0 0 320px rgb(34, 225, 222);
 }
 #admin:hover{
     background: rgba(211, 237, 191, 0.8);
@@ -191,6 +244,15 @@ body{
     width: 99%;
     overflow: auto;
     position: absolute;
+}
+
+.contenedorEmp{
+    margin-top: 60px;
+    width: 100%;
+    height: 91vh;
+    overflow: auto;
+    position: absolute;
+    background-color: #7faca2;
 }
 
 /*Seccion Formularios*/
@@ -495,23 +557,75 @@ form button[disabled]{
   /*Servicios mostrados por pantalla*/
   .tarjeton{
     margin: 10px;
-    margin-bottom: 35px;
-    flex-grow: 1;
+    margin-bottom: 50px;
+    display: flex;
+    
+    align-items: center;
+
     width: 30%;
-    height: 300px;
+    max-width: 31%;
+    height: 275px;
+    background: #d3ddc6;
+    box-shadow: 0 15px 45px rgba(0, 0, 0,0.25);
+    overflow: hidden;
+    transition: 0.5s ease-in-out;
   }
 
-  .tarjetonBuddy{
-    height: 250px;
+  .tarjeton:hover{
+    width: 300px;
   }
+
+  .tarjeton:hover .imgBox{
+    transform: rotate(-35deg);
+  }
+
+  .tarjeton:hover .imgBox img{
+    width: 80%;
+  }
+
+  .tarjeton .tarjetonBuddy{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 50%;
+    padding: 5px;
+  }
+
+  .tarjeton .tarjetonBuddy::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 0;
+  }
+
   .tarjetonOpciones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
     padding: 10px;
     text-align: center;
   }
-
+ 
+  .tarjeton .imgBox{
+    position: relative;
+    min-width: 35%;
+    width: 300px;
+    height: 100%;
+    
+   
+    transition: 0.5s;
+  }
+  .imgBox img{
+    width: 80%;
+  }
   /*PAGINA DE REGISTRO DE NUEVO USUARIO*/
   /*FORM PARA NUEVO USUARIO*/
   .tituloregistro{
+    padding-top: 10px;
     text-align: center;
   }
   .signup{
@@ -538,3 +652,171 @@ form button[disabled]{
     display: block;
     color: rgba(164, 85, 15, 0.85);
 }
+
+/*PAGINA EMPLEADO ENTRADA Y COMPONENTE DE CONSULTA Y EDICION*/
+/*ENTRADA EMPLEADO*/
+
+.reservaEmpleadoComp{
+    background: url(../imagen/largerIcons/reservas.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 69px;
+    width: 69px;
+    display: inline-block;
+    cursor: pointer;
+}
+.horariopEmpleadoComp{
+    background: url(../imagen/largerIcons/calendar.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 69px;
+    width: 69px;
+    display: inline-block;
+    cursor: pointer;
+}
+#franjaEmpleado{
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.sigCita{
+    display: flex;
+    justify-content: left;
+    align-items:center;
+    background: var(--bg-color);
+    margin-left: 5%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    width: 50%;
+    min-height: 200px;
+    background:  rgba(255, 255, 255, 0.43);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0,0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px soli rgba(255, 255, 255, 0.3);
+    padding: 2%;
+}
+.granP{
+    min-width: 50px;
+    width: 200px;
+    font-family: Robotmonothintalic;
+    font-weight: 900;
+}
+.cardCita{
+    border-left: solid 1px #ccc;
+    padding-left: 5%;
+}
+.cabsimple{
+    padding: 25px;
+    margin-left: 2%;
+    font-size: 19px;
+    font-family: Robotmonolightitalic;
+}
+
+/*MOSTRAR RESERVACIONES PARA EMPLEADO*/
+.cancelarReserva{
+    background: url(../imagen/icons/cancelar.png) no-repeat;
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+}
+.elChuache{
+    background: url(../imagen/largerIcons/regreso.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 79px;
+    width: 79px;
+    cursor: pointer;
+    display: inline-block;
+}
+.contenedorSimple{
+    margin: 2%;
+    background-color: #E0EEEF;
+}
+.tituloyAdicionalSimple{
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    height: 91px;
+}
+.tituloyAdicionalSimple h2{
+    width: 400px;
+    max-width: 450px;
+    margin-left: 10px;
+    font-size: 25px;
+} 
+.paleta{
+    background-color: #C6D8E2;
+    height: 97vh;
+    margin: 0;
+}
+.btnregreso{
+    background-color: #E0EEEF;
+    border: none;
+}
+.Logout{
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 25px;
+    overflow: hidden;
+    border-radius: 20px 100px;
+    transition: 0.2s;
+    padding-left: 11px;
+    padding-right: 11px;
+    color: #ffffff;
+    background-color: #0f6f46;
+}
+.Logout:hover{
+    color:rgb(248, 11, 11);
+    background: rgb(64, 231, 112);
+    box-shadow:
+    0 0 20px rgb(194, 113, 9), 0 0 80px rgb(194, 113, 9),
+    0 0 160px rgb(194, 113, 9), 0 0 320px rgb(194, 113, 9);
+}
+
+.btnSaitama{
+    
+    font-size: 15px;
+    padding: 5px;
+    margin-top: 15px;
+    color: white;
+    background: #88B06A;
+    cursor:pointer;
+}
+
+.subCabecera{
+    padding: 15px;
+}
+
+.contenedorinfo{
+    margin-left: 10%;
+}
+
+.reservaConfirm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: var(--bg-color);
+    margin-left: 30%;
+    width: 40%;
+    min-height: 300px;
+    background:  rgba(255, 255, 255, 0.43);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0,0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px soli rgba(255, 255, 255, 0.3);
+  }
+
+  .Atlas{
+    background-image: linear-gradient(to bottom right, rgba(47,128,237, 0.88),rgb(247, 100, 186));
+    min-height: 100vh;
+  }
+
+  .koopa{
+    font-weight: 500;
+    color: #fff;
+  }

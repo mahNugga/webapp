@@ -1,2 +1,25 @@
 <app-cab-empleado></app-cab-empleado>
 
+<div class="contenedorEmp">
+    <div class="cabsimple">
+        Hoy <strong>{{fechaMostrar}}</strong>  tenga un <em>{{neo}}</em> día querido {{nombreEmp}}
+    </div>
+    <div class="sigCita">
+        <p class="granP">Su proxima reserva es:</p>
+        <div class="cardCita">
+            <p>
+                <strong>Cliente: </strong><em>{{sigTrab.apellido}} {{sigTrab.nombre}}</em>
+            </p>
+            <p>
+                <strong>Hora reservada: </strong><em>{{sigTrab.hora}}:00 </em>
+            </p>
+            <p>
+                <strong>Servicio reservado: </strong><em>{{sigTrab.servicio}}</em>
+            </p>
+        </div>
+    </div>
+    <div id="franjaEmpleado">
+        <button (click)="verReservaciones(idEmp)"><span class="reservaEmpleadoComp"></span></button>
+        <button (click)="verHorarios(idEmp)"><span class="horariopEmpleadoComp"></span></button>
+    </div>
+</div>

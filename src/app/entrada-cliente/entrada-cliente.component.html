@@ -1,14 +1,23 @@
 <app-cab-cliente></app-cab-cliente>
 <div class="contenedorCli">
     <div *ngFor="let servicio of servicios" class="tarjeton">
-        <p>soy un servicio dame click uwu!</p>
+        <!-- <p>soy un servicio dame click uwu!</p> -->
+        <div class="imgBox">
+            <img src="./assets/imagen/tarjetas/logoCorteCabello2.png" alt="servicio">
+        </div>
         <div class="tarjetonBuddy">
-            <p>{{servicio.nombre}}</p>
-            <p><strong>Descripcion: </strong>{{servicio.descripcion}}</p>
+            <div class="nombre">
+                <p>{{servicio.nombre}}</p>
+            </div>
+            <div class="descripbuddy">
+                <p><strong>Descripcion: </strong>{{servicio.descripcion}}</p>
+            </div>
+            
             <p ><strong>Valor: $ </strong><span style="font-size: 10px;">{{servicio.precio}}</span></p>
+            <div class="tarjetonOpciones">
+                <button class="btnSaitama" (click)="reservar(servicio)"> Reservar </button>
+            </div>
         </div>
-        <div class="tarjetonOpciones">
-            <button (click)="reservar(servicio)"> Reservar </button>
-        </div>
+        
     </div>
 </div>

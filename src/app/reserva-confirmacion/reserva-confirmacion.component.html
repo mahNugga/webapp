@@ -1,9 +1,24 @@
-<h1>Confirmar Reservacion</h1>
-<p>Ultimo paso, por favor revise con precaucion:</p>
-<p>Servicio requerido:{{extras.servicio}}</p>
-<p>Duracion servicio requerido:{{extras.duracion}} (horas/minutos)</p>
-<p>Valor del servicio: {{extras.precio}}</p>
-<p>Fecha de la reservacion: {{extras.fechasleccion}} </p>
-<p>Hora de la reservacion:{{extras.horaseleccion}}:00</p>
 
-<button (click)="reservar()">Confirmar</button> <button>Cancelar</button>
+
+<div class="Atlas">
+    <div class="tituloregistro">
+        <div class="koopa">
+            <h1>Confirmar Reservacion</h1>
+            <h2>Ultimo paso, por favor revise con precaucion:</h2>
+        </div>
+    </div>
+    
+    <section class="reservaConfirm">
+    
+    
+    
+    <p><strong>Servicio requerido : </strong>{{extras.servicio}}</p>
+    <p><strong>Duracion servicio requerido : </strong>{{extras.duracion}} (horas/minutos)</p>
+    <p><strong>Valor del servicio : </strong> {{extras.precio}}</p>
+    <p><strong>Fecha de la reservacion : </strong> {{extras.fechasleccion}} </p>
+    <p><strong>Hora de la reservacion : </strong>{{extras.horaseleccion}}:00</p>
+    
+    <button class="btnSaitama" (click)="reservar()">Confirmar</button> 
+    <p><button class="btnSaitama" (click)="cancelarReserva()">Cancelar</button></p>
+    </section>
+</div>

@@ -47,8 +47,12 @@ export class CabClienteComponent implements OnInit {
   mostrarReserva(id:number){
     this._reservaServicio.mostrarReservaCliente(id).subscribe({
       next:(n)=>{
-        this.route.navigate(['reservacion-cliente'],{state:{reserva:n}});
+        this.route.navigate(['reservacion-cliente'],{state:{reserva:n.resecliente}});
       },error:(e)=>console.log(e)
     });
+  }
+
+  HastaLaVista(){
+    this.route.navigate(['/']);
   }
 }

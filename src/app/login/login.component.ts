@@ -37,10 +37,14 @@ export class LoginComponent implements OnInit {
             this._router.navigate(['/principal-cliente'],{state:{id:param}});
           }
           if(response.teller==1){
+            param=response.empleado_r[0].id;
+            console.log(param);
             console.log("Recordaran este dia como el empleado simplon!");
-            this._router.navigate(['/principal-empleado']);
+            this._router.navigate(['/principal-empleado'],{queryParams:{id:param}});
           }
           if(response.teller==7){
+            param = response.empleado_r[0].id;
+            console.log(param);
             console.log("Recordaran este dia como el admin!");
             this._router.navigate(['/principal-admin']);
           }

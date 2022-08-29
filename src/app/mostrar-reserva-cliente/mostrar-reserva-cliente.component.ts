@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Reservaciondb } from '../modelos/reservaciondb';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-mostrar-reserva-cliente',
@@ -16,7 +17,8 @@ export class MostrarReservaClienteComponent implements OnInit {
   public extras:any;
   public datos:any;
   constructor(
-    private _ruta:Router
+    private _ruta:Router,
+    private _location:Location
   ) { 
     this.extras =  this._ruta.getCurrentNavigation()?.extras?.state?.['reserva'];
     console.log("las posibilidades son:");
@@ -28,6 +30,10 @@ export class MostrarReservaClienteComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  volver(){
+    this._location.back();
   }
 
 }

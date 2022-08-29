@@ -29,4 +29,23 @@ export class ReservacionServicio{
         return this._http.get(this.url+'consulta-reservacioncliente',{headers:headers,params:param});
 
     }
+
+    mostrarOneReservaEmp(id:any):Observable<any>{
+        let param = new HttpParams()
+        .set("id",id);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.get(this.url+'muestra-siguientetrabajo',{headers:headers,params:param});
+    }
+
+    mostrarReservaEmp(id:any):Observable<any>{
+        let param = new HttpParams()
+        .set("id",id);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.get(this.url+'muestra-reservaempleado',{headers:headers,params:param});
+    }
+
 }

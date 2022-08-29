@@ -4,6 +4,7 @@ import { HorarioServicio } from '../servicios/horario.servicio';
 import { EmpleadoC } from '../modelos/empleadoC';
 import { Router } from '@angular/router';
 import { Reservacion } from '../modelos/reservacion';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-reservacion',
@@ -28,7 +29,8 @@ export class ReservacionComponent implements OnInit {
   constructor(
     private _horarioServicio:HorarioServicio,
     private elf:ElementRef,
-    private _ruta:Router
+    private _ruta:Router,
+    private _location:Location
   ) { 
     this.extras=this._ruta.getCurrentNavigation()?.extras.state?.['serv'];
     this.cliente_id = this._ruta.getCurrentNavigation()?.extras.state?.['id'];
@@ -134,6 +136,10 @@ export class ReservacionComponent implements OnInit {
     this.reserva.servicio_id = this.extras.id;
     console.log(this.reserva);
     this._ruta.navigate(['confirmar-reserva'],{state:{re:this.reserva}});
+  }
+
+  volver(){
+    this._location.back();
   }
 }  
  
