@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class MostrarReservaClienteComponent implements OnInit {
 
-  displayedColumns: string[] = ['nombre','hora','fecha','cliente_id'];
+  displayedColumns: string[] = ['nombre','hora','fecha','ora'];
   dataSource: MatTableDataSource<Reservaciondb>;
   public text="row 1";
   public extras:any;

@@ -46,7 +46,7 @@ export class EntradaEmpleadoComponent implements OnInit {
   ngOnInit(): void {
     this.neo = this.elegirPiropo(this.min,this.max,this.piropear);
     this.fechaMostrar = this.fechaEmp.toLocaleDateString("es-ES");
-    console.log("ahi van:"+this.fechaEmp+" e indice "+this.indice);
+    //console.log("ahi van:"+this.fechaEmp+" e indice "+this.indice);
     this.trabajoContEmp(this.idEmp);
     this.cabEmpleado(this.idEmp);
   }
@@ -93,7 +93,7 @@ export class EntradaEmpleadoComponent implements OnInit {
       next:(n)=>{
         if(n.empeladoCab){
           this.nombreEmp = n.empeladoCab.nombre;
-          console.log("los id son:");
+          //console.log("los id son:");
           /* console.log(id);
           console.log(this.id_activo); */
         }

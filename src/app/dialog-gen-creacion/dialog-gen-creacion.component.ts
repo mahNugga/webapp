@@ -12,13 +12,18 @@ export class DialogGenCreacionComponent implements OnInit {
   public generox:string;
   //gen:string;
   constructor(
-    @Inject(MAT_DIALOG_DATA) public gen:any
+    @Inject(MAT_DIALOG_DATA) public gen:any,
+    private dialogref:MatDialogRef<DialogGenCreacionComponent>
   ) { 
     this.generox=this.gen;
   }
 
   ngOnInit(): void {
     
+  }
+
+  Eliminator(){
+    this.dialogref.close(this.generox);
   }
 
 }
