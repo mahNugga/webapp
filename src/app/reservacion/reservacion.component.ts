@@ -26,6 +26,8 @@ export class ReservacionComponent implements OnInit {
   public extras:any;
   public cliente_id:number;
   public reserva:Reservacion;
+  public empleados!:any;
+  public thor:boolean=false;
   constructor(
     private _horarioServicio:HorarioServicio,
     private elf:ElementRef,
@@ -61,6 +63,7 @@ export class ReservacionComponent implements OnInit {
           arreglo=n.fechin;
           console.log(this.horarios);
           console.log(this.logico);
+          this.empleados = n.fechin;
           arreglo.forEach((element: any) => {
             console.log(element)
             if(element.hora_inicio=='10:00:00' && element.hora_fin=='19:00:00'){
@@ -123,6 +126,12 @@ export class ReservacionComponent implements OnInit {
     if(this.status==false){
       op?.setAttribute('style','background-color:white;');
     }
+  }
+
+  elejirEmp(empneo:any){
+    console.log(empneo);
+    this.thor = true;
+    this._horarioServicio
   }
   
   confirmarReserva(){

@@ -66,4 +66,11 @@ export class EmpleadoServicio{
         .set('Content-Type','application/json');
         return this._http.get(this.url+'empleado-info',{headers:headers,params:param});
     }
+
+    sudoListaEmpleados():Observable<any>{
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.get(this.url+'mantenimiento-empleado',{headers:headers});
+    }
 }

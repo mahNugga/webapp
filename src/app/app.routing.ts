@@ -23,6 +23,9 @@ import { ReservaConfirmacionComponent } from "./reserva-confirmacion/reserva-con
 import { MostrarReservaClienteComponent } from "./mostrar-reserva-cliente/mostrar-reserva-cliente.component";
 import { MostrarReservaEmpleadoComponent } from "./mostrar-reserva-empleado/mostrar-reserva-empleado.component";
 import { ConsultaHorarioEmpleadoComponent } from "./consulta-horario-empleado/consulta-horario-empleado.component";
+import { MostrarHorarioEmpleadoComponent } from "./mostrar-horario-empleado/mostrar-horario-empleado.component";
+import { MostrarreservaadminComponent } from "./mostrarreservaadmin/mostrarreservaadmin.component";
+import { MantenimientoempleadoComponent } from "./mantenimientoempleado/mantenimientoempleado.component";
 
 //Configuracion de rutas
 const appRoutes: Routes = [
@@ -42,9 +45,12 @@ const appRoutes: Routes = [
     {path:'crear-servicio',component:CompCreaServicioComponent},
     {path:'consulta-servicio',component:CompConsultaServicioComponent},
     {path:'crear-horario',component:HorarioComponent},
+    {path:'consulta-horariosadmin',component:MostrarHorarioEmpleadoComponent},
     {path:'mantenimiento-cliente',component:ConsultaClienteComponent},
+    {path:'mantenimiento-empleado',component:MantenimientoempleadoComponent},
     {path:'mostrar-reservaempleado',component:MostrarReservaEmpleadoComponent},
     {path:'mostrar-horariosempleado',component:ConsultaHorarioEmpleadoComponent},
+    {path:'mostrar-detallereservas',component:MostrarreservaadminComponent},
     {path: '**', component:logearComponent}
 ];
 

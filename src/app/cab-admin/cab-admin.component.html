@@ -1,5 +1,5 @@
 <header id="admin">
-    <nav>Bienvenido Admin: </nav>
+    <nav>Bienvenido Admin: <button (click)="HastaLaVista()" class="Logout">Salir</button> </nav>
 </header>
 <ul id="navegacionAdmin">
     <li><a routerLink="/principal-admin"><img src="../../assets/imagen/home.png"></a></li>
@@ -24,13 +24,16 @@
     <li class="adminclick">Horario</li>
     <ul  class="drpdwn">
         <li><a routerLink="/crear-horario">Registrar horario</a></li>
-        <li>Consultar horario</li>
+        <li><a routerLink="/consulta-horariosadmin">Consultar horario</a> </li>
     </ul>
-    <li class="adminclick"><a>Reservacion</a></li>
-    <li class="adminclick"><a>Mantenimiento</a></li>
+    <li class="adminclick">Reservacion</li>
+    <ul class="drpdwn">
+        <li><a routerLink="/mostrar-detallereservas">Consultar reservacion</a></li>
+    </ul>
+    <li class="adminclick">Mantenimiento</li>
     <ul  class="drpdwn">
         <li><a routerLink="/mantenimiento-cliente">Cliente</a></li>
-        <li>Empleado</li>
+        <li><a routerLink="/mantenimiento-empleado">Empleado</a></li>
     </ul>
 </ul>
 

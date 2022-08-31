@@ -37,4 +37,29 @@ export class HorarioServicio{
         return this._http.get(this.url+'consulta-horarioempleado',{headers:headers,params:param});
     }
 
+    actualizaGuardaHorario(horario:Horario,id:any){
+        let params = JSON.stringify(horario);
+        let param = new HttpParams()
+        .set("id",id);
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+
+        return this._http.put(this.url+'edita-horarioexterno',params,{headers:headers,params:param});
+    }
+
+    detalleHorariosCompleto():Observable<any>{
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+
+        return this._http.get(this.url+'consulta-horarioadmin',{headers:headers});
+    }
+
+    casiBorraHorario(id:any){
+         let param = new HttpParams()
+        .set("id",id); 
+        //let params = id;
+        console.log(param);
+        let headers = new HttpHeaders().set('Content-Type','application/json');
+
+        return this._http.put(this.url+'elimina-horario',{headers:headers,params:param});
+    }
+
 }

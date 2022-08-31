@@ -40,7 +40,28 @@
         </div>
          
     </div>
-    <span class="info">info</span>
+    <!-- <span class="info">info</span> -->
+    <div class="elegidosEmp" *ngIf="logico">
+        <h2>Empleados Disponibles</h2>
+        <table>
+            <body>
+                <tr *ngFor="let expendable of empleados">
+                    <th>
+                        {{expendable.apellido}} {{expendable.empnombre}}
+                    </th>
+                    <!-- <td (click)="elejirHora(hora)"
+                        [ngClass]="status ? 'elegido':'nada'"
+                        id="a{{hora}}"><span></span></td> -->
+                    <td (click)="elejirEmp(expendable)">
+                        Elegir empleado
+                    </td>
+                </tr>
+            </body>
+        </table>
+    </div>
+    <div *ngIf="thor">
+        <h2> Horas disponibles</h2>
+    </div>
     
 </div>
     </div>

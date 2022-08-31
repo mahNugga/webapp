@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { Reservaciondb } from "../modelos/reservaciondb";
 import { global } from "./global";
 
+
 @Injectable()
 export class ReservacionServicio{
     public url:string;
@@ -46,6 +47,13 @@ export class ReservacionServicio{
         .set('Content-Type','application/json');
 
         return this._http.get(this.url+'muestra-reservaempleado',{headers:headers,params:param});
+    }
+
+    mostrarReservaAdmin():Observable<any>{
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.get(this.url+'muestra-reservaadmin',{headers:headers});
     }
 
 }

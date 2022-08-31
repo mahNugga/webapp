@@ -2,52 +2,110 @@
 
 <div class="contenedor">
     <h2>{{titulo}}</h2>
-    <form #horarioForm="ngForm" (ngSubmit)="onSubmit(horarioForm)">
-        <p>
-            <label for="nombre">Nombre descriptivo</label>
-            <input type="text" name="nombre"
-             #nombre="ngModel" [(ngModel)]="horario.nombre"
-            required/>
-            <span class="empleadoformErr" *ngIf="nombre.touched && !nombre.valid">
-                Debe entrar un nombre de horario valido!
-            </span>
-        </p>
-        <p>
-            <label for="descripcion">Descripcion</label>
-            <input type="text" name="descripcion"
-             #descripcion="ngModel" [(ngModel)]="horario.descripcion"/>
+    <div class="libroMagico">
+        <div class="paginaNomagica">
+            <form #horarioForm="ngForm" (ngSubmit)="onSubmit(horarioForm)">
+                <p>
+                    <label for="nombre">Nombre descriptivo</label>
+                    <input type="text" name="nombre"
+                     #nombre="ngModel" [(ngModel)]="horario.nombre"
+                    required/>
+                    <span class="empleadoformErr" *ngIf="nombre.touched && !nombre.valid">
+                         Nombre de horario invalido!
+                    </span>
+                </p>
+                <p>
+                    <label for="descripcion">Descripcion</label>
+                    <input type="text" name="descripcion"
+                     #descripcion="ngModel" [(ngModel)]="horario.descripcion"/>
+                    
+                </p>
+                <p>
+                    <label for="rango_ini">Rango de fecha de Inicio (Opcional)</label>
+                    <input type="date" name="rango_inicio"
+                    #rango_inicio="ngModel" [(ngModel)]="horario.rango_inicio"/>
+                </p>
+                <p>
+                    <label for="rango_fin">Rango de fecha de Salida (Opcional)</label>
+                    <input type="date" name="rango_fin"
+                    #rango_fin="ngModel" [(ngModel)]="horario.rango_fin "/>
+                </p>
+                    <label>Hora inicio</label>
+                    <input type="time" name="horaIni"
+                    #horaIni="ngModel" [(ngModel)]="horario.hora_inicio"/>
+                <p>
+                    <label>Hora salida</label>
+                    <input type="time" name="horaFin"
+                     #horaFin="ngModel" [(ngModel)]="horario.hora_fin"
+                    />
+                    <span></span>
+                </p>
+                <p>
+                    <label for="empleado">Seleccionar empleado para asignar Horario</label>
+                    <select  (change)="VamoPerroh($event)" name="empleadoSeleccion" id="empleadoHorario"
+                    #empleadoHorario="ngModel" [(ngModel)]="horario.empleado_id">
+                        <option *ngFor="let empleado of empleados;let i=index" 
+                        [ngValue]="empleado.id"
+                        >{{i+1}} - {{empleado.apellido}} {{empleado.nombre}}</option>
+                    </select>
+                </p>
+                <input type="submit" value="Guardar" [disabled]="!horarioForm.form.valid "/>
+            </form>
+        </div>
+        <div class="paginaMagica" *ngIf="potter">
+            <p>Listado de horarios asociados al empleado</p>
+            <table mat-table [dataSource]="dataSource" matSort>
+      
+                <ng-container matColumnDef="seleccion">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+                    <td mat-cell *matCellDef="let row">  <input  #radSeleccion type="radio" name="horarioActulizer" value={{row.id}} (change)="Prueba(row.id)"/> </td>
+                </ng-container>
+                <!-- cliente Column -->
+                <ng-container matColumnDef="nombre">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong> Horario</strong> </th>
+                  <td mat-cell *matCellDef="let row"> {{row.nombre}}  </td>
+                </ng-container>
             
-        </p>
-        <p>
-            <label for="rango_ini">Rango de fecha de Inicio (Opcional)</label>
-            <input type="date" name="rango_inicio"
-            #rango_inicio="ngModel" [(ngModel)]="horario.rango_inicio"/>
-        </p>
-        <p>
-            <label for="rango_fin">Rango de fecha de Salida (Opcional)</label>
-            <input type="date" name="rango_fin"
-            #rango_fin="ngModel" [(ngModel)]="horario.rango_fin "/>
-        </p>
-            <label>Hora inicio</label>
-            <input type="time" name="horaIni"
-            #horaIni="ngModel" [(ngModel)]="horario.hora_inicio"/>
-        <p>
-            <label>Hora salida</label>
-            <input type="time" name="horaFin"
-             #horaFin="ngModel" [(ngModel)]="horario.hora_fin"
-            />
-            <span></span>
-        </p>
-        <p>
-            <label for="empleado">Seleccionar empleado para asignar Horario</label>
-            <select name="empleadoSeleccion" id="empleadoHorario"
-            #empleadoHorario="ngModel" [(ngModel)]="horario.empleado_id">
-                <option *ngFor="let empleado of empleados;let i=index" 
-                [ngValue]="empleado.id"
-                >{{i+1}} - {{empleado.apellido}} {{empleado.nombre}}</option>
-            </select>
-        </p>
-        <input type="submit" value="Guardar" [disabled]="!horarioForm.form.valid"/>
-    </form>
+                <!-- fecha a realizar servicio Column -->
+                <ng-container matColumnDef="rangoinicio">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Fecha Inicio </strong></th>
+                  <td mat-cell *matCellDef="let row"> {{row.rango_inicio}} </td>
+                </ng-container>
+            
+                <!-- hora Column -->
+                <ng-container matColumnDef="rangofin">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Fecha fin </strong>  </th>
+                  <td mat-cell *matCellDef="let row"> {{row.rango_fin}} </td>
+                </ng-container>
+            
+                <!-- servicio Column -->
+                <ng-container matColumnDef="horainicio">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Entrada</strong> </th>
+                  <td mat-cell *matCellDef="let row"> {{row.hora_inicio}}</td>
+                </ng-container>
+      
+                <ng-container matColumnDef="horafin">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Salida</strong> </th>
+                  <td mat-cell *matCellDef="let row"> {{row.hora_fin}} </td>
+                </ng-container>
+                
+                <!-- Stock Ideal Column -->
+                <!--   -->
+          
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            
+                <!-- Row shown when there is no matching data. -->
+                <!-- <tr class="mat-row" *matNoDataRow>
+                  <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr> -->
+            </table>
+            <div class="AdendoMagico">
+                <p> Desea Actualizar el horario?</p>
+                <button class="btnSaitama" (click)="Actualizer()"  >Actualizar</button><br>
+                <span *ngIf="!voldemort"> Al guardar el horario se va a Actualizar por el horario ingresado (nuevo)</span>
+            </div>
+        </div>
+    </div>
 
 </div>

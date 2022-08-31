@@ -201,6 +201,7 @@ body{
     display: inline-block;
     height: 32px;
     width: 32px;
+    min-width: auto;
 }
 .eliminaempleado{
     background: url(../imagen/icons/eliminar.png) no-repeat;
@@ -414,6 +415,8 @@ form button[disabled]{
 /* seccion errores*/
 
 .empleadoformErr{
+    color: #ce852c;
+    font-weight: 400;
     padding: 5px;
     margin-left: 5px;
 }
@@ -816,7 +819,29 @@ form button[disabled]{
     min-height: 100vh;
   }
 
+  .elegidosEmp{
+    margin-left: 45px;
+  }
+
   .koopa{
     font-weight: 500;
     color: #fff;
+  }
+  .paginaMagica{
+    margin-top: 2%;
+    font-size: 25px;
+    width: 70%;
+  }
+  .AdendoMagico{
+    font-size: 15px;
+    color: #b47a16;
+  } 
+  .AdendoMagico p{
+    padding-top: 7px;
+  }
+  .libroMagico{
+    display: flex;
+  }
+  .paginaNomagica{
+    width: 58%;
   }
