@@ -56,4 +56,14 @@ export class ReservacionServicio{
         return this._http.get(this.url+'muestra-reservaadmin',{headers:headers});
     }
 
+    buscaFechaExiste(fechabus:any,empid:any):Observable<any>{
+        let param = new HttpParams()
+        .set("fechabus",fechabus)
+        .set("empid",empid);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.get(this.url+'busca-fechareserva',{headers:headers,params:param});
+    }
+
 }

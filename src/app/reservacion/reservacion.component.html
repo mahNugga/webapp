@@ -18,49 +18,64 @@
         </div>
 
 
-<div class="contenedorinfo">
-    <div *ngIf="logico">
-        <p>{{horarios.hora_inicio}}</p>
-        <!-- Hoy se sale! -->
-        <table>
-            <body>
-                <tr *ngFor="let hora of elegido">
-                    <th>
-                        {{hora+':00'}}
-                    </th>
-                    <td (click)="elejirHora(hora)"
-                        [ngClass]="status ? 'elegido':'nada'"
-                        id="a{{hora}}"><span></span></td>
-                </tr>
-            </body>
-        </table>
-        
-        <div class="controlesreservar">
-            <button class="btnreservar" (click)="confirmarReserva()">Reservar</button>
+    <div class="contenedorinfo">
+        <!-- <div *ngIf="logico">
+            <p>{{horarios.hora_inicio}}</p>
+                Hoy se sale! 
+            <table>
+                <body>
+                    <tr *ngFor="let hora of elegido">
+                        <th>
+                            {{hora+':00'}}
+                        </th>
+                        <td (click)="elejirHora(hora)"
+                            [ngClass]="status ? 'elegido':'nada'"
+                            id="a{{hora}}"><span></span></td>
+                    </tr>
+                </body>
+            </table>
+            
+            <div class="controlesreservar">
+                <button class="btnreservar" (click)="confirmarReserva()">Reservar</button>
+            </div>
+            
+        </div> -->
+            <!-- <span class="info">info</span> -->
+        <div class="elegidosEmp" *ngIf="logico">
+            <h2>Empleados Disponibles</h2>
+            <table>
+                <body>
+                    <tr *ngFor="let expendable of empleados">
+                        <th>
+                            {{expendable.apellido}} {{expendable.empnombre}}
+                        </th>
+                        <!-- <td (click)="elejirHora(hora)"
+                            [ngClass]="status ? 'elegido':'nada'"
+                            id="a{{hora}}"><span></span></td> -->
+                        <td (click)="elejirEmp(expendable)">
+                            Elegir empleado
+                        </td>
+                    </tr>
+                </body>
+            </table>
         </div>
-         
-    </div>
-    <!-- <span class="info">info</span> -->
-    <div class="elegidosEmp" *ngIf="logico">
-        <h2>Empleados Disponibles</h2>
+    <div *ngIf="thor">
+        <h2> Horas disponibles</h2>
         <table>
-            <body>
-                <tr *ngFor="let expendable of empleados">
+            <body id="tableh">
+                <tr *ngFor="let disp of arregloHorasDisp">
                     <th>
-                        {{expendable.apellido}} {{expendable.empnombre}}
+                        {{disp+":00"}}
                     </th>
                     <!-- <td (click)="elejirHora(hora)"
                         [ngClass]="status ? 'elegido':'nada'"
                         id="a{{hora}}"><span></span></td> -->
-                    <td (click)="elejirEmp(expendable)">
-                        Elegir empleado
+                    <td (click)="procedeReserva(disp)" id="{{disp}}">
+                        <!-- Elegir empleado -->
                     </td>
                 </tr>
             </body>
         </table>
-    </div>
-    <div *ngIf="thor">
-        <h2> Horas disponibles</h2>
     </div>
     
 </div>

@@ -735,8 +735,9 @@ form button[disabled]{
     display: inline-block;
 }
 .contenedorSimple{
-    margin: 2%;
+    width: 90%;
     background-color: #E0EEEF;
+    height: 100%;
 }
 .tituloyAdicionalSimple{
     margin: 5px;
@@ -751,8 +752,11 @@ form button[disabled]{
     font-size: 25px;
 } 
 .paleta{
+    display: flex;
+    justify-content: center;
     background-color: #C6D8E2;
-    height: 97vh;
+    min-height: 100vh;
+    height: fit-content;
     margin: 0;
 }
 .btnregreso{
@@ -790,11 +794,13 @@ form button[disabled]{
 }
 
 .subCabecera{
-    padding: 15px;
+    padding: 10px;
 }
 
 .contenedorinfo{
     margin-left: 10%;
+    height: fit-content;
+    margin-bottom: 40px;
 }
 
 .reservaConfirm{
@@ -821,6 +827,10 @@ form button[disabled]{
 
   .elegidosEmp{
     margin-left: 45px;
+  }
+
+  .perfilCli{
+    border-radius: 100px;
   }
 
   .koopa{

@@ -5,12 +5,13 @@ import { EmpleadoC } from '../modelos/empleadoC';
 import { Router } from '@angular/router';
 import { Reservacion } from '../modelos/reservacion';
 import { Location } from '@angular/common';
+import { ReservacionServicio } from '../servicios/reservacion.servicio';
 
 @Component({
   selector: 'app-reservacion',
   templateUrl: './reservacion.component.html',
   styleUrls: ['./reservacion.component.scss'],
-  providers: [HorarioServicio]
+  providers: [HorarioServicio,ReservacionServicio]
 })
 export class ReservacionComponent implements OnInit {
 
@@ -28,8 +29,12 @@ export class ReservacionComponent implements OnInit {
   public reserva:Reservacion;
   public empleados!:any;
   public thor:boolean=false;
+  public fechaActual:Date = new Date();
+  public libre!:boolean;
+  public arregloHorasDisp: any=[]
   constructor(
     private _horarioServicio:HorarioServicio,
+    private _reservaservicio:ReservacionServicio,
     private elf:ElementRef,
     private _ruta:Router,
     private _location:Location
@@ -131,7 +136,101 @@ export class ReservacionComponent implements OnInit {
   elejirEmp(empneo:any){
     console.log(empneo);
     this.thor = true;
-    this._horarioServicio
+    let emp = empneo;
+    this._reservaservicio.buscaFechaExiste(this.fechacomparar,empneo.empleado_id).subscribe({
+      next:(n)=>{
+        if(n.ganador){
+          console.log("yooooooooooo");
+          console.log(n.ganador);
+        }
+        if(n.ganador<1){
+          console.log("heregoagain");
+          this.libre=true;
+          console.log('inicio '+this.iniciohoraTabla+'empneoinicio '+empneo.hora_inicio);
+          console.log('fin '+this.finhoraTabla+'empneofin '+empneo.hora_fin);
+          let horafixinico = empneo.hora_inicio.slice(0,2);
+          let horafixfin = empneo.hora_fin.slice(0,2);
+          console.log(horafixinico);
+          let lehourActual = this.fechaActual.getHours();
+          lehourActual = lehourActual;
+          let opcion;
+          console.log(lehourActual);
+          if(lehourActual< horafixinico){
+            console.log("con if funka y es horario completo de opciones"+lehourActual);
+            opcion = 'igual';
+            this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
+          }
+          if(lehourActual >= horafixinico && lehourActual < Number(horafixfin)){
+            console.log("ya es un arreglo con menos opciones"+lehourActual);
+            opcion = 'mayor'
+            this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
+          }
+          /* if(lehourActual < Number(horafixinico)){
+            console.log("otro horario con todas las opciones"+lehourActual);
+            this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
+          } */
+          if(lehourActual >= horafixfin){
+            console.log("vuelva mañana guachin"+lehourActual);
+            //this.creaArreglodeHorasDisponibles(lehourActual,empneo.hora_inicio,this.finhoraTabla);
+          }
+            switch(lehourActual){
+              case Number(empneo.hora_inicio): console.log("hay something aqui"+lehourActual);
+            }
+          
+        }else{
+          this.libre=false
+        }
+      }, error:(e)=>console.log(e)
+    });
+     var buscarele = "#tableh";
+     var elementoTabla = document.getElementById("#tableh") as HTMLButtonElement;
+     elementoTabla.disabled=true;
+    /* if(this.libre==true){
+      let lehourActual = this.fechaActual.getHours();
+      lehourActual+2;
+      console.log(lehourActual);
+      if(lehourActual== Number(this.iniciohoraTabla)){
+        console.log("con if funka");
+      }
+        switch(lehourActual){
+          case Number(this.iniciohoraTabla): console.log("hay something aqui"+lehourActual);
+              break;
+          case Number(this.iniciohoraTabla):
+        }
+    }else{
+      console.log("mmmmmmmm ups");
+    }
+ */
+  }
+
+  creaArreglodeHorasDisponibles(hora:any,horaentrada:any,horasalid:any,op:string){
+    this.arregloHorasDisp=[];
+    /* console.log("la hora que viene: "+hora);
+    console.log("la horaentrada que viene: "+horaentrada);
+    console.log("la horasalida que viene: "+horasalid); */
+    let indic=0;
+    let iniciobucle =  Number(horaentrada);//(horasalid - indic);
+    horasalid = Number(horasalid);
+    console.log("inicio de arreglo:"+iniciobucle);
+    if(op=='igual'){
+      indic= (horasalid - horaentrada);
+      //console.log("la hora indice:"+indic);
+      for(let i=0; i<indic;i++){
+        this.arregloHorasDisp[i]=iniciobucle;
+        iniciobucle++;
+      }
+
+    }else{
+      indic = (horasalid - hora);
+      /* console.log("la hora indice:"+indic);
+      console.log('la resta '+(horasalid - horaentrada)); */
+      for(let i=0; i<indic;i++){
+        this.arregloHorasDisp[i]=hora;
+        hora++;
+      }
+    }
+    
+    console.log(this.arregloHorasDisp);
   }
   
   confirmarReserva(){
@@ -145,6 +244,24 @@ export class ReservacionComponent implements OnInit {
     this.reserva.servicio_id = this.extras.id;
     console.log(this.reserva);
     this._ruta.navigate(['confirmar-reserva'],{state:{re:this.reserva}});
+  }
+
+  procedeReserva(info:any){
+    console.log(info);
+    let i=0;
+    /* arreglo.length;
+    for(i=0;i<arreglo.length;i++){
+      if(i!=info){
+        arreglo[i].innerHTML="";
+      }
+    } */
+    var op = document.getElementById(info);
+    console.log(op);
+    //if(this.status==true){
+    op!.innerHTML="";
+    //}
+    op?.setAttribute('style','background-color:red;');
+    op!.innerHTML=this.extras.nombre;
   }
 
   volver(){
