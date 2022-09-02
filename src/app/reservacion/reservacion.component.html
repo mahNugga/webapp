@@ -17,8 +17,10 @@
             <h2> Cuadro de Horas Disponibles</h2>
         </div>
 
-
-    <div class="contenedorinfo">
+        <div class="malafecha" *ngIf="ultimostatusIpromise==2">
+            <p>Por favor, eliga una fecha que no sea antes de hoy ({{fechahoy}})</p>
+        </div>
+    <div class="contenedorinfo" >
         <!-- <div *ngIf="logico">
             <p>{{horarios.hora_inicio}}</p>
                 Hoy se sale! 
@@ -59,7 +61,7 @@
                 </body>
             </table>
         </div>
-    <div *ngIf="thor">
+    <div *ngIf="thor" class="mjiolnir">
         <h2> Horas disponibles</h2>
         <table>
             <body id="tableh">
@@ -69,13 +71,21 @@
                     </th>
                     <!-- <td (click)="elejirHora(hora)"
                         [ngClass]="status ? 'elegido':'nada'"
-                        id="a{{hora}}"><span></span></td> -->
-                    <td (click)="procedeReserva(disp)" id="{{disp}}">
+                        id="a{{hora}}"><span></span></td>
+                    <td (click)="procedeReserva(disp)" id="{{disp}}"> -->
+                    <td (click)="procedeReserva(disp)" 
+                        [ngClass]="status ? 'elegido:disabled':'nada'" 
+                        class="lostds"  id="{{disp}}">
+                        <!-- <button id="{{disp}}" class="btntd" (click)="procedeReserva(disp)" ></button> -->
                         <!-- Elegir empleado -->
                     </td>
                 </tr>
             </body>
         </table>
+    </div>
+    <div *ngIf="rambo" class="rocky">
+        <button class="btnreservar" (click)="confirmarReserva()">Reservar</button>
+        <button class="btnreservar" (click)="cancelarReserva()">Cancelar</button>
     </div>
     
 </div>

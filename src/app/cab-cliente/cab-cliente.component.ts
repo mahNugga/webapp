@@ -55,4 +55,8 @@ export class CabClienteComponent implements OnInit {
   HastaLaVista(){
     this.route.navigate(['/']);
   }
+
+  irPerfil(id:any){
+    this.route.navigate(['perfil-cliente']);
+  }
 }

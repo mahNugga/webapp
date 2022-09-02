@@ -17,6 +17,7 @@ export class ReservacionComponent implements OnInit {
 
   public horarios!:Horario;
   public fechacomparar:any;
+  public fechahoy:any;
   public logico=false;
   public elegido:any=[];
   public horaNeo: any;
@@ -31,7 +32,9 @@ export class ReservacionComponent implements OnInit {
   public thor:boolean=false;
   public fechaActual:Date = new Date();
   public libre!:boolean;
-  public arregloHorasDisp: any=[]
+  public arregloHorasDisp: any=[];
+  public ultimostatusIpromise:number=0;
+  public rambo:boolean=false;
   constructor(
     private _horarioServicio:HorarioServicio,
     private _reservaservicio:ReservacionServicio,
@@ -52,8 +55,33 @@ export class ReservacionComponent implements OnInit {
   
   fechas(){
     //console.log("me lleva la fecha");
+    var comparaesta = new Date(this.fechacomparar);
+    //(this.fechacomparar)as Date;
+    //var fechafixelegida = this.fechacomparar.toLocaleDateString("es-ES")
+    var fechafixcomparar = comparaesta.toLocaleDateString("es-ES");
     console.log(this.fechacomparar);
+    console.log(comparaesta);
+    console.log(fechafixcomparar);
+    this.fechahoy = this.fechaActual.toLocaleDateString("es-ES");
+    var fechasuperhoy = new Date(this.fechahoy);
+    this.fechaActual.setHours(0,0,0,0);
+    comparaesta.setHours(0,0,0,0);
+    console.log(this.fechahoy);
+    console.log(comparaesta.getDay());
+    console.log(fechasuperhoy.getDay());
     this.reserva.fechasleccion=this.fechacomparar;
+    /* if( fechafixcomparar < this.fechahoy){
+      console.log(" ya paso y no va a pasar");
+      
+      this.ultimostatusIpromise=2;
+    }
+    if(fechafixcomparar>=this.fechahoy){
+      console.log("denuevo por aqui");
+    } */
+    /* if(this.fechacomparar=== this.fechahoy || this.fechacomparar > this.fechahoy){
+      console.log("mucho mejor ronaldinho");
+      this.ultimostatusIpromise=1;
+    } */
     this._horarioServicio.matchHorario(this.fechacomparar).subscribe({
       next:(n)=>{
         if(n.fechin){
@@ -137,6 +165,11 @@ export class ReservacionComponent implements OnInit {
     console.log(empneo);
     this.thor = true;
     let emp = empneo;
+    //this.horaNeo=empneo
+    this.rambo=false;
+    console.log(this.fechaActual);
+    this.fechahoy = this.fechaActual.toLocaleDateString("es-Es");
+    console.log(this.fechahoy);
     this._reservaservicio.buscaFechaExiste(this.fechacomparar,empneo.empleado_id).subscribe({
       next:(n)=>{
         if(n.ganador){
@@ -155,24 +188,34 @@ export class ReservacionComponent implements OnInit {
           lehourActual = lehourActual;
           let opcion;
           console.log(lehourActual);
-          if(lehourActual< horafixinico){
-            console.log("con if funka y es horario completo de opciones"+lehourActual);
-            opcion = 'igual';
-            this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
+          if(this.fechacomparar!=this.fechahoy){
+            console.log("no es hoy repito, no es hoy");
+            /* if(lehourActual< horafixinico){ */
+              console.log("con if funka y es horario completo de opciones"+lehourActual);
+              opcion = 'igual';
+              this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
+            //}
+          }else{
+            if(lehourActual< horafixinico){
+              console.log("con if funka y es horario completo de opciones"+lehourActual);
+              opcion = 'igual';
+              this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
+            }
+            if(lehourActual >= horafixinico && lehourActual < Number(horafixfin)){
+              console.log("ya es un arreglo con menos opciones"+lehourActual);
+              opcion = 'mayor'
+              this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
+            }
+            /* if(lehourActual < Number(horafixinico)){
+              console.log("otro horario con todas las opciones"+lehourActual);
+              this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
+            } */
+            if(lehourActual >= horafixfin){
+              console.log("vuelva mañana guachin"+lehourActual);
+              //this.creaArreglodeHorasDisponibles(lehourActual,empneo.hora_inicio,this.finhoraTabla);
+            }
           }
-          if(lehourActual >= horafixinico && lehourActual < Number(horafixfin)){
-            console.log("ya es un arreglo con menos opciones"+lehourActual);
-            opcion = 'mayor'
-            this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
-          }
-          /* if(lehourActual < Number(horafixinico)){
-            console.log("otro horario con todas las opciones"+lehourActual);
-            this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
-          } */
-          if(lehourActual >= horafixfin){
-            console.log("vuelva mañana guachin"+lehourActual);
-            //this.creaArreglodeHorasDisponibles(lehourActual,empneo.hora_inicio,this.finhoraTabla);
-          }
+          
             switch(lehourActual){
               case Number(empneo.hora_inicio): console.log("hay something aqui"+lehourActual);
             }
@@ -184,7 +227,7 @@ export class ReservacionComponent implements OnInit {
     });
      var buscarele = "#tableh";
      var elementoTabla = document.getElementById("#tableh") as HTMLButtonElement;
-     elementoTabla.disabled=true;
+     //elementoTabla.disabled=true;
     /* if(this.libre==true){
       let lehourActual = this.fechaActual.getHours();
       lehourActual+2;
@@ -249,19 +292,33 @@ export class ReservacionComponent implements OnInit {
   procedeReserva(info:any){
     console.log(info);
     let i=0;
+    this.rambo=true;
+    this.horaNeo=info;
     /* arreglo.length;
     for(i=0;i<arreglo.length;i++){
       if(i!=info){
         arreglo[i].innerHTML="";
       }
     } */
+    //var op = (document.getElementById(info)as any).disabled=true;
     var op = document.getElementById(info);
     console.log(op);
     //if(this.status==true){
-    op!.innerHTML="";
+    //op!.innerHTML="";
     //}
     op?.setAttribute('style','background-color:red;');
     op!.innerHTML=this.extras.nombre;
+    this.status=!this.status;
+    if(this.status==false){
+      op?.setAttribute('style','background-color:white;');
+      op!.innerHTML="";
+    }
+    var tds = (document.querySelectorAll('lostds') as unknown as HTMLInputElement);
+    tds.disabled=true;
+  }
+
+  cancelarReserva(){
+    this._location.back();
   }
 
   volver(){

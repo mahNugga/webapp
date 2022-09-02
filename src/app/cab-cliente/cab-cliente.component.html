@@ -1,3 +1,3 @@
 <header id="cliente">
-    <nav class="navcliente"> <strong><span style="padding-right: 10px;">Hola</span> </strong>   {{nombreCab}}  <button id="btnConsultaReserva" (click)="mostrarReserva(cliente_id)">Consulta Reserva</button><button class="perfilCli" >Perfil</button><button class="Logout" (click)="HastaLaVista()">Salir</button></nav>
+    <nav class="navcliente"> <strong><span style="padding-right: 10px;">Hola</span> </strong>   <span class="clientewelcome">{{nombreCab}}</span>  <button id="btnConsultaReserva" (click)="mostrarReserva(cliente_id)">Consulta Reserva</button><button class="perfilCli" (click)="irPerfil(cliente_id)">Perfil</button><button class="Logout" (click)="HastaLaVista()">Salir</button></nav>
 </header>

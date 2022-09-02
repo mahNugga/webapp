@@ -4,6 +4,8 @@ import { ReservacionServicio } from '../servicios/reservacion.servicio';
 import { HorarioServicio } from '../servicios/horario.servicio';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
+import { Reservaciondb } from '../modelos/reservaciondb';
 
 @Component({
   selector: 'app-entrada-empleado',
@@ -24,6 +26,8 @@ export class EntradaEmpleadoComponent implements OnInit {
   public fechaMostrar:string;
   public sigTrab:any;
   public horarioEmp:any;
+  displayedColumns:string[] =['apellido','fecha','hora','servicio'];
+  dataSource!: MatTableDataSource<Reservaciondb>;
   constructor(
     private _empleadoservicio:EmpleadoServicio,
     private _reservaservicio:ReservacionServicio,
@@ -49,6 +53,7 @@ export class EntradaEmpleadoComponent implements OnInit {
     //console.log("ahi van:"+this.fechaEmp+" e indice "+this.indice);
     this.trabajoContEmp(this.idEmp);
     this.cabEmpleado(this.idEmp);
+    this.verReservaciones(this.idEmp);
   }
 
   elegirPiropo(min:number,max:number,piro:any){
@@ -72,7 +77,8 @@ export class EntradaEmpleadoComponent implements OnInit {
       next:(n)=>{
         console.log(n);
         if(n.reseTrabajo){
-          this.route.navigate(['mostrar-reservaempleado'],{state:{reservas:n.reseTrabajo}});
+          this.dataSource= n.reseTrabajo;
+          //this.route.navigate(['mostrar-reservaempleado'],{state:{reservas:n.reseTrabajo}});
         }
       },error:(e)=>console.log(e)
     });

@@ -792,6 +792,17 @@ form button[disabled]{
     background: #88B06A;
     cursor:pointer;
 }
+.btnSaitamaplus{
+    
+    font-size: 15px;
+    padding: 5px;
+    margin-top: 15px;
+    color: white;
+    background: #88B06A;
+    cursor:pointer;
+    letter-spacing: 2px;
+    border-radius: 5px;
+}
 
 .subCabecera{
     padding: 10px;
@@ -831,6 +842,18 @@ form button[disabled]{
 
   .perfilCli{
     border-radius: 100px;
+    letter-spacing: 1px;
+  }
+  .clientewelcome{
+    font-size: 30px;
+  }
+  .perfilCli:hover{
+    cursor: pointer;
+  }
+  .adendoReserva{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .koopa{
