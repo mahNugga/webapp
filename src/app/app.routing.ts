@@ -27,6 +27,7 @@ import { MostrarHorarioEmpleadoComponent } from "./mostrar-horario-empleado/most
 import { MostrarreservaadminComponent } from "./mostrarreservaadmin/mostrarreservaadmin.component";
 import { MantenimientoempleadoComponent } from "./mantenimientoempleado/mantenimientoempleado.component";
 import { PerfilclienteComponent } from "./perfilcliente/perfilcliente.component";
+import { MantenimientoestadoComponent } from "./mantenimientoestado/mantenimientoestado.component";
 
 //Configuracion de rutas
 const appRoutes: Routes = [
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
     {path:'consulta-horariosadmin',component:MostrarHorarioEmpleadoComponent},
     {path:'mantenimiento-cliente',component:ConsultaClienteComponent},
     {path:'mantenimiento-empleado',component:MantenimientoempleadoComponent},
+    {path:'mantenimiento-estado',component:MantenimientoestadoComponent},
     {path:'mostrar-reservaempleado',component:MostrarReservaEmpleadoComponent},
     {path:'mostrar-horariosempleado',component:ConsultaHorarioEmpleadoComponent},
     {path:'mostrar-detallereservas',component:MostrarreservaadminComponent},

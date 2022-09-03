@@ -46,6 +46,7 @@ import { ConsultaHorarioEmpleadoComponent } from './consulta-horario-empleado/co
 import { MostrarreservaadminComponent } from './mostrarreservaadmin/mostrarreservaadmin.component';
 import { MantenimientoempleadoComponent } from './mantenimientoempleado/mantenimientoempleado.component';
 import { PerfilclienteComponent } from './perfilcliente/perfilcliente.component';
+import { MantenimientoestadoComponent } from './mantenimientoestado/mantenimientoestado.component';
 
 
 @NgModule({
@@ -82,7 +83,8 @@ import { PerfilclienteComponent } from './perfilcliente/perfilcliente.component'
     ConsultaHorarioEmpleadoComponent,
     MostrarreservaadminComponent,
     MantenimientoempleadoComponent,
-    PerfilclienteComponent
+    PerfilclienteComponent,
+    MantenimientoestadoComponent
   ],
   imports: [
     BrowserModule,

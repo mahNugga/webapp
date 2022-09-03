@@ -141,7 +141,7 @@ body{
 }
 #navegacionAdmin li a{
     display: block;
-    padding-top: 10px;
+    padding-top: 5px;
     padding-bottom: 5px;
     text-decoration: none;
 }
@@ -821,7 +821,7 @@ form button[disabled]{
     align-items: center;
     background: var(--bg-color);
     margin-left: 30%;
-    width: 40%;
+    width: 45%;
     min-height: 300px;
     background:  rgba(255, 255, 255, 0.43);
     border-radius: 16px;
@@ -856,6 +856,19 @@ form button[disabled]{
     align-items: center;
   }
 
+  .naruto{
+    font-size: 18px;
+    font-weight: 300;
+    font-family: Robotmonothintalic;
+  }
+
+  .goku{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 7px;
+  }
+
   .koopa{
     font-weight: 500;
     color: #fff;
@@ -878,3 +891,4 @@ form button[disabled]{
   .paginaNomagica{
     width: 58%;
   }
+  

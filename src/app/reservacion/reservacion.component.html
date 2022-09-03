@@ -18,9 +18,9 @@
         </div>
 
         <div class="malafecha" *ngIf="ultimostatusIpromise==2">
-            <p>Por favor, eliga una fecha que no sea antes de hoy ({{fechahoy}})</p>
+            <p><span class="errFecha" >Por favor, eliga una fecha que no sea antes de hoy <strong>({{fechahoy}})</strong></span></p>
         </div>
-    <div class="contenedorinfo" >
+    <div class="contenedorinfo" *ngIf="ultimostatusIpromise==1">
         <!-- <div *ngIf="logico">
             <p>{{horarios.hora_inicio}}</p>
                 Hoy se sale! 

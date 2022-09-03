@@ -17,6 +17,7 @@ export class ReservacionComponent implements OnInit {
 
   public horarios!:Horario;
   public fechacomparar:any;
+  public diff:any;
   public fechahoy:any;
   public logico=false;
   public elegido:any=[];
@@ -58,18 +59,20 @@ export class ReservacionComponent implements OnInit {
     var comparaesta = new Date(this.fechacomparar);
     //(this.fechacomparar)as Date;
     //var fechafixelegida = this.fechacomparar.toLocaleDateString("es-ES")
-    var fechafixcomparar = comparaesta.toLocaleDateString("es-ES");
+    //var fechafixcomparar = comparaesta.toLocaleDateString("es-ES");
     console.log(this.fechacomparar);
     console.log(comparaesta);
-    console.log(fechafixcomparar);
+    //console.log(fechafixcomparar);
     this.fechahoy = this.fechaActual.toLocaleDateString("es-ES");
     var fechasuperhoy = new Date(this.fechahoy);
     this.fechaActual.setHours(0,0,0,0);
     comparaesta.setHours(0,0,0,0);
     console.log(this.fechahoy);
-    console.log(comparaesta.getDay());
-    console.log(fechasuperhoy.getDay());
+    //console.log(comparaesta.getDay());
+    //console.log(fechasuperhoy.getDay());
     this.reserva.fechasleccion=this.fechacomparar;
+    this.diff = (this.fechaActual.getTime() - comparaesta.getTime())/100000;
+    console.log("la diferencia es "+this.diff);
     /* if( fechafixcomparar < this.fechahoy){
       console.log(" ya paso y no va a pasar");
       
@@ -82,65 +85,71 @@ export class ReservacionComponent implements OnInit {
       console.log("mucho mejor ronaldinho");
       this.ultimostatusIpromise=1;
     } */
-    this._horarioServicio.matchHorario(this.fechacomparar).subscribe({
-      next:(n)=>{
-        if(n.fechin){
-          var arreglo=[];
-          var index=0;
-          var secure;
-          this.elegido=[];
-          console.log("aqui esta lo chido");
-          console.log(n);
-          this.horarios=n.fechin;
-          this.logico=true;
-          arreglo=n.fechin;
-          console.log(this.horarios);
-          console.log(this.logico);
-          this.empleados = n.fechin;
-          arreglo.forEach((element: any) => {
-            console.log(element)
-            if(element.hora_inicio=='10:00:00' && element.hora_fin=='19:00:00'){
-              console.log("yehaaaaaaaaaaa!");
-              this.iniciohoraTabla=element.hora_inicio;
-              this.iniciohoraTabla = this.iniciohoraTabla.slice(0,2);
-              this.finhoraTabla = element.hora_fin;
-              this.finhoraTabla = this.finhoraTabla.slice(0,2);
-              this.empleado_id = element.empleado_id; 
-            }if(element.hora_inicio=='10:00:00'){
-              this.iniciohoraTabla = element.hora_inicio;
-              this.iniciohoraTabla = this.iniciohoraTabla.slice(0,2);
-              this.finhoraTabla = element.hora_fin;
-              this.finhoraTabla = this.finhoraTabla.slice(0,2);
-              this.empleado_id = element.empleado_id; 
-            }if(element.hora_inicio=='09:00:00'){
-              this.iniciohoraTabla = element.hora_inicio;
-              this.iniciohoraTabla = this.iniciohoraTabla.slice(0,2);
-              this.finhoraTabla = element.hora_fin;
-              this.finhoraTabla = this.finhoraTabla.slice(0,2);
-              this.empleado_id = element.empleado_id; 
-            }
-            console.log(this.iniciohoraTabla+' -hasta- '+this.finhoraTabla);
-            
-            
-          });
-          console.log(arreglo.length);
-          if(arreglo.length>0){
-            console.log('buggyman');
-            index = <number><unknown>this.finhoraTabla - <number><unknown>this.iniciohoraTabla;
-            //console.log(index);
-            var horas=parseInt(this.iniciohoraTabla);
-            for(var i=0;i<index;i++){
-              this.elegido[i]=horas;
-              horas+=1;
-            }
-          }else{
+    if(this.diff<1000){
+      this.ultimostatusIpromise = 1;
+      this._horarioServicio.matchHorario(this.fechacomparar).subscribe({
+        next:(n)=>{
+          if(n.fechin){
+            var arreglo=[];
+            var index=0;
+            var secure;
             this.elegido=[];
+            console.log("aqui esta lo chido");
+            console.log(n);
+            this.horarios=n.fechin;
+            this.logico=true;
+            arreglo=n.fechin;
+            console.log(this.horarios);
+            console.log(this.logico);
+            this.empleados = n.fechin;
+            arreglo.forEach((element: any) => {
+              console.log(element)
+              if(element.hora_inicio=='10:00:00' && element.hora_fin=='19:00:00'){
+                console.log("yehaaaaaaaaaaa!");
+                this.iniciohoraTabla=element.hora_inicio;
+                this.iniciohoraTabla = this.iniciohoraTabla.slice(0,2);
+                this.finhoraTabla = element.hora_fin;
+                this.finhoraTabla = this.finhoraTabla.slice(0,2);
+                this.empleado_id = element.empleado_id; 
+              }if(element.hora_inicio=='10:00:00'){
+                this.iniciohoraTabla = element.hora_inicio;
+                this.iniciohoraTabla = this.iniciohoraTabla.slice(0,2);
+                this.finhoraTabla = element.hora_fin;
+                this.finhoraTabla = this.finhoraTabla.slice(0,2);
+                this.empleado_id = element.empleado_id; 
+              }if(element.hora_inicio=='09:00:00'){
+                this.iniciohoraTabla = element.hora_inicio;
+                this.iniciohoraTabla = this.iniciohoraTabla.slice(0,2);
+                this.finhoraTabla = element.hora_fin;
+                this.finhoraTabla = this.finhoraTabla.slice(0,2);
+                this.empleado_id = element.empleado_id; 
+              }
+              console.log(this.iniciohoraTabla+' -hasta- '+this.finhoraTabla);
+              
+              
+            });
+            console.log(arreglo.length);
+            if(arreglo.length>0){
+              console.log('buggyman');
+              index = <number><unknown>this.finhoraTabla - <number><unknown>this.iniciohoraTabla;
+              //console.log(index);
+              var horas=parseInt(this.iniciohoraTabla);
+              for(var i=0;i<index;i++){
+                this.elegido[i]=horas;
+                horas+=1;
+              }
+            }else{
+              this.elegido=[];
+            }
+            console.log(this.elegido);
           }
-          console.log(this.elegido);
-        }
-      },
-      error:(e)=> console.log(e)
-    });
+        },
+        error:(e)=> console.log(e)
+      });
+    }
+    if(this.diff>1700){
+      this.ultimostatusIpromise = 2;
+    }
     
   }
 
@@ -188,6 +197,8 @@ export class ReservacionComponent implements OnInit {
           lehourActual = lehourActual;
           let opcion;
           console.log(lehourActual);
+          console.log(this.fechacomparar);
+          console.log(this.fechahoy);
           if(this.fechacomparar!=this.fechahoy){
             console.log("no es hoy repito, no es hoy");
             /* if(lehourActual< horafixinico){ */

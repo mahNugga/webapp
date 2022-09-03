@@ -50,9 +50,32 @@
             <td mat-cell *matCellDef="let row"> {{row.hora_fin}} </td>
           </ng-container>
 
-          <ng-container matColumnDef="estado">
+          <!-- <ng-container matColumnDef="estado">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Estado</strong> </th>
             <td mat-cell *matCellDef="let row"> <span *ngIf="row.estado==1">Proceso</span> <span *ngIf="row.estado==0">Completo</span></td>
+          </ng-container> -->
+
+          <!-- <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Estado</strong> </th>
+            <td mat-cell *matCellDef="let row">  <select  (change)="VamoPerrucho($event)" 
+              name="empleadoSeleccion" id="empleadoHorario"
+              #estadoReserva="ngModel" [(ngModel)]="estado.nombre">
+                  <option *ngFor="let empleado of estadosR;let i=index" 
+                  [ngValue]="empleado.id"
+                  >{{i+1}} - {{empleado.nombre}}</option>
+              </select> </td>
+          </ng-container>  opcion eliminada:
+            (change)="VamoPerrucho($event)" 
+              name="empleadoSeleccion" id="empleadoHorario"
+              #estadoReserva="ngModel" [(ngModel)]="estado.nombre"
+        -->
+
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Estado</strong> </th>
+            <td mat-cell *matCellDef="let row">  <select >
+                  <option *ngFor="let empleado of estadosR;let i=index"
+                  >{{i+1}} - {{empleado.nombre}}</option>
+              </select> </td>
           </ng-container>
           
           <!-- Stock Ideal Column -->
