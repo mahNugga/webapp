@@ -57,6 +57,6 @@ export class CabClienteComponent implements OnInit {
   }
 
   irPerfil(id:any){
-    this.route.navigate(['perfil-cliente']);
+    this.route.navigate(['perfil-cliente'],{queryParams:{id:id}});
   }
 }

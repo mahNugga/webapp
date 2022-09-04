@@ -47,6 +47,7 @@ import { MostrarreservaadminComponent } from './mostrarreservaadmin/mostrarreser
 import { MantenimientoempleadoComponent } from './mantenimientoempleado/mantenimientoempleado.component';
 import { PerfilclienteComponent } from './perfilcliente/perfilcliente.component';
 import { MantenimientoestadoComponent } from './mantenimientoestado/mantenimientoestado.component';
+import { DialogCreacionGenericoComponent } from './dialog-creacion-generico/dialog-creacion-generico.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { MantenimientoestadoComponent } from './mantenimientoestado/mantenimient
     MostrarreservaadminComponent,
     MantenimientoempleadoComponent,
     PerfilclienteComponent,
-    MantenimientoestadoComponent
+    MantenimientoestadoComponent,
+    DialogCreacionGenericoComponent
   ],
   imports: [
     BrowserModule,

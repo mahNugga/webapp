@@ -17,8 +17,10 @@ export class ReservacionComponent implements OnInit {
 
   public horarios!:Horario;
   public fechacomparar:any;
-  public diff:any;
+  public fechaActual:Date = new Date();
   public fechahoy:any;
+  public diff:any;
+  public fechahoyFull:any;
   public logico=false;
   public elegido:any=[];
   public horaNeo: any;
@@ -31,7 +33,6 @@ export class ReservacionComponent implements OnInit {
   public reserva:Reservacion;
   public empleados!:any;
   public thor:boolean=false;
-  public fechaActual:Date = new Date();
   public libre!:boolean;
   public arregloHorasDisp: any=[];
   public ultimostatusIpromise:number=0;
@@ -55,24 +56,31 @@ export class ReservacionComponent implements OnInit {
   }
   
   fechas(){
+    this.empleados=[];
+    console.log("reset: "+this.empleados);
+    this.thor=false;
+    this.rambo=false;
+    this.arregloHorasDisp=[];
     //console.log("me lleva la fecha");
     var comparaesta = new Date(this.fechacomparar);
     //(this.fechacomparar)as Date;
     //var fechafixelegida = this.fechacomparar.toLocaleDateString("es-ES")
     //var fechafixcomparar = comparaesta.toLocaleDateString("es-ES");
-    console.log(this.fechacomparar);
-    console.log(comparaesta);
+    /* console.log(this.fechacomparar);
+    console.log(comparaesta); */
     //console.log(fechafixcomparar);
+    this.fechahoyFull = this.fechaActual;
     this.fechahoy = this.fechaActual.toLocaleDateString("es-ES");
-    var fechasuperhoy = new Date(this.fechahoy);
-    this.fechaActual.setHours(0,0,0,0);
-    comparaesta.setHours(0,0,0,0);
-    console.log(this.fechahoy);
+    //var fechasuperhoy = new Date(this.fechahoy);
+    /* this.fechaActual.setHours(0,0,0,0);
+    comparaesta.setHours(0,0,0,0); */
+    //console.log(this.fechahoy);
     //console.log(comparaesta.getDay());
     //console.log(fechasuperhoy.getDay());
     this.reserva.fechasleccion=this.fechacomparar;
     this.diff = (this.fechaActual.getTime() - comparaesta.getTime())/100000;
     console.log("la diferencia es "+this.diff);
+    //console.log(comparaesta);
     /* if( fechafixcomparar < this.fechahoy){
       console.log(" ya paso y no va a pasar");
       
@@ -85,7 +93,7 @@ export class ReservacionComponent implements OnInit {
       console.log("mucho mejor ronaldinho");
       this.ultimostatusIpromise=1;
     } */
-    if(this.diff<1000){
+    if(this.diff<1100){
       this.ultimostatusIpromise = 1;
       this._horarioServicio.matchHorario(this.fechacomparar).subscribe({
         next:(n)=>{
@@ -147,7 +155,7 @@ export class ReservacionComponent implements OnInit {
         error:(e)=> console.log(e)
       });
     }
-    if(this.diff>1700){
+    if(this.diff>1300){
       this.ultimostatusIpromise = 2;
     }
     
@@ -173,11 +181,19 @@ export class ReservacionComponent implements OnInit {
   elejirEmp(empneo:any){
     console.log(empneo);
     this.thor = true;
-    let emp = empneo;
+    this.status=false;
+    var removedor = document.querySelector("lostds");
+    removedor?.classList.remove("elegido:disabled");
+    removedor?.classList.add("nada");
+    //let emp = empneo;
     //this.horaNeo=empneo
     this.rambo=false;
-    console.log(this.fechaActual);
-    this.fechahoy = this.fechaActual.toLocaleDateString("es-Es");
+    /* console.log(this.fechaActual);
+    console.log(this.fechahoy); */
+    let lehourActual = this.fechahoyFull.getHours();
+    let leminute = this.fechahoyFull.getMinutes();
+    console.log(leminute);
+    //this.fechahoy = this.fechaActual.toLocaleDateString("es-Es");
     console.log(this.fechahoy);
     this._reservaservicio.buscaFechaExiste(this.fechacomparar,empneo.empleado_id).subscribe({
       next:(n)=>{
@@ -187,26 +203,47 @@ export class ReservacionComponent implements OnInit {
         }
         if(n.ganador<1){
           console.log("heregoagain");
-          this.libre=true;
-          console.log('inicio '+this.iniciohoraTabla+'empneoinicio '+empneo.hora_inicio);
-          console.log('fin '+this.finhoraTabla+'empneofin '+empneo.hora_fin);
+          //this.libre=true;
+          /* console.log('inicio '+this.iniciohoraTabla+'empneoinicio '+empneo.hora_inicio);
+          console.log('fin '+this.finhoraTabla+'empneofin '+empneo.hora_fin); */
           let horafixinico = empneo.hora_inicio.slice(0,2);
           let horafixfin = empneo.hora_fin.slice(0,2);
           console.log(horafixinico);
-          let lehourActual = this.fechaActual.getHours();
+          let pruebafecha = new Date(this.fechacomparar);
+          let pruebafechaAnother = pruebafecha.toLocaleDateString("en-EN");
+          let pruebaspanol = pruebafecha.toLocaleDateString("es-ES");
+          let pruebafechahoy = new Date(this.fechahoy); 
+          let pruebafechahoyconvert = pruebafechahoy.toLocaleDateString("es-ES");
           lehourActual = lehourActual;
           let opcion;
+          /* console.log(this.fechaActual);
           console.log(lehourActual);
           console.log(this.fechacomparar);
-          console.log(this.fechahoy);
-          if(this.fechacomparar!=this.fechahoy){
-            console.log("no es hoy repito, no es hoy");
+          console.log(this.fechahoy); */
+          /* console.log(pruebafechaAnother);
+          console.log(pruebaspanol); */
+          //console.log(pruebafechahoyconvert);
+          if(this.diff<0){
+            console.log("hoy no se trabaja");
+            opcion="mayor";
+            this.creaArreglodeHorasDisponibles(lehourActual,leminute,horafixinico,horafixfin,opcion);
+          }
+          if(this.diff<1100 && this.diff>1){
+            console.log("hoy se camella");
+            opcion="igual";
+            this.creaArreglodeHorasDisponibles(lehourActual,leminute,horafixinico,horafixfin,opcion);
+          }
+          if(this.diff>1299){
+            console.log("eso no esta dentro de los parametros rik");
+          }
+          /* if(this.fechacomparar!=pruebafechahoyconvert){
+            console.log("no es hoy repito, no es hoy"); */
             /* if(lehourActual< horafixinico){ */
-              console.log("con if funka y es horario completo de opciones"+lehourActual);
+              /* console.log("con if funka y es horario completo de opciones"+lehourActual);
               opcion = 'igual';
-              this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
-            //}
-          }else{
+              this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion); */
+            
+          /* }else{
             if(lehourActual< horafixinico){
               console.log("con if funka y es horario completo de opciones"+lehourActual);
               opcion = 'igual';
@@ -216,20 +253,25 @@ export class ReservacionComponent implements OnInit {
               console.log("ya es un arreglo con menos opciones"+lehourActual);
               opcion = 'mayor'
               this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
-            }
+            } */
             /* if(lehourActual < Number(horafixinico)){
               console.log("otro horario con todas las opciones"+lehourActual);
               this.creaArreglodeHorasDisponibles(lehourActual,horafixinico,horafixfin,opcion);
             } */
-            if(lehourActual >= horafixfin){
-              console.log("vuelva mañana guachin"+lehourActual);
+            /* if(lehourActual >= horafixfin){
+              console.log("vuelva mañana guachin"+lehourActual); */
               //this.creaArreglodeHorasDisponibles(lehourActual,empneo.hora_inicio,this.finhoraTabla);
-            }
-          }
+            /* }
+          } */
           
-            switch(lehourActual){
-              case Number(empneo.hora_inicio): console.log("hay something aqui"+lehourActual);
-            }
+            /* switch(this.diff){
+              case this.diff<0: console.log("No es hoy ni ayer "+lehourActual);
+                break;
+              case this.diff<1100:console.log("es hoy meme "+lehourActual);
+                break;
+              case this.diff>1299:console.log("es el pasado Marty! "+lehourActual);
+                break;
+            } */
           
         }else{
           this.libre=false
@@ -257,7 +299,7 @@ export class ReservacionComponent implements OnInit {
  */
   }
 
-  creaArreglodeHorasDisponibles(hora:any,horaentrada:any,horasalid:any,op:string){
+  creaArreglodeHorasDisponibles(hora:any,minuti:any,horaentrada:any,horasalid:any,op:string){
     this.arregloHorasDisp=[];
     /* console.log("la hora que viene: "+hora);
     console.log("la horaentrada que viene: "+horaentrada);
@@ -267,7 +309,13 @@ export class ReservacionComponent implements OnInit {
     horasalid = Number(horasalid);
     console.log("inicio de arreglo:"+iniciobucle);
     if(op=='igual'){
-      indic= (horasalid - horaentrada);
+      /* let caritomehabloenIngles = hora/60 */
+      if(hora>=horaentrada && minuti>1){
+        iniciobucle= hora+1;
+        console.log("daleeeeee guacho")
+        indic= (horasalid - (hora+1));
+      }
+      
       //console.log("la hora indice:"+indic);
       for(let i=0; i<indic;i++){
         this.arregloHorasDisp[i]=iniciobucle;
@@ -275,12 +323,17 @@ export class ReservacionComponent implements OnInit {
       }
 
     }else{
+      if(horaentrada>hora){
+        iniciobucle = horaentrada
+      }else{
+        iniciobucle =hora;
+      }
       indic = (horasalid - hora);
       /* console.log("la hora indice:"+indic);
       console.log('la resta '+(horasalid - horaentrada)); */
       for(let i=0; i<indic;i++){
-        this.arregloHorasDisp[i]=hora;
-        hora++;
+        this.arregloHorasDisp[i]=iniciobucle;
+        iniciobucle++;
       }
     }
     

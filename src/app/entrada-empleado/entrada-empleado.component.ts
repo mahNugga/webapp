@@ -63,7 +63,7 @@ export class EntradaEmpleadoComponent implements OnInit {
   }
 
   trabajoContEmp(idEmp:any){
-    this._reservaservicio.mostrarOneReservaEmp(idEmp).subscribe({
+    this._reservaservicio.mostrarOneReservaEmp(idEmp,this.fechaMostrar).subscribe({
       next:(n)=>{
         this.sigTrab = n.reseNex[0];
         console.log(this.sigTrab);
@@ -73,7 +73,7 @@ export class EntradaEmpleadoComponent implements OnInit {
   }
 
   verReservaciones(idEmp:any){
-    this._reservaservicio.mostrarReservaEmp(idEmp).subscribe({
+    this._reservaservicio.mostrarReservaEmp(idEmp,this.fechaMostrar).subscribe({
       next:(n)=>{
         console.log(n);
         if(n.reseTrabajo){

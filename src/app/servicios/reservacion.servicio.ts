@@ -31,18 +31,20 @@ export class ReservacionServicio{
 
     }
 
-    mostrarOneReservaEmp(id:any):Observable<any>{
+    mostrarOneReservaEmp(id:any,fechaing:any):Observable<any>{
         let param = new HttpParams()
-        .set("id",id);
+        .set("id",id)
+        .set("fechaing",fechaing);
         let headers = new HttpHeaders()
         .set('Content-Type','application/json');
 
         return this._http.get(this.url+'muestra-siguientetrabajo',{headers:headers,params:param});
     }
 
-    mostrarReservaEmp(id:any):Observable<any>{
+    mostrarReservaEmp(id:any,fechaing:any):Observable<any>{
         let param = new HttpParams()
-        .set("id",id);
+        .set("id",id)
+        .set("feching",fechaing);
         let headers = new HttpHeaders()
         .set('Content-Type','application/json');
 

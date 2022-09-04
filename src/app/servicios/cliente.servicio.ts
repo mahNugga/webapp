@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { ClienteBasic } from "../modelos/clienteBasic";
 import { global } from "./global";
 import { ClienteRegistro } from "../modelos/clienteregistro";
+import { ClienteEdicion } from "../modelos/clienteActualizar";
 
 @Injectable()
 export class ClienteServicio{
@@ -36,5 +37,24 @@ export class ClienteServicio{
         .set('Content-Type','application/json');
 
         return this._http.get(this.url+'consulta-cliente',{headers:headers});
+    }
+
+    detalleDatosCliente(id:any):Observable<any>{
+        let param = new HttpParams()
+        .set("id",id);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.get(this.url+'datos-perfilcliente',{headers:headers,params:param});
+    }
+
+    actualizaDatosCliente(form:ClienteEdicion,id:any):Observable<any>{
+        let params = JSON.stringify(form);
+        let param = new HttpParams()
+        .set("id",id);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.put(this.url+'actualiza-registrocliente',params,{headers:headers,params:param});
     }
 }

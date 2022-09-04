@@ -1,0 +1,80 @@
+<div id="pequenaLulu">
+    <div *ngIf="ruletacriolla==1">
+        <h2>Edicion de datos Personales</h2>
+
+        <div mat-dialog-content>
+            <form #clienteEditForm="ngForm" >
+             <mat-form-field appearance="outline">
+                 <mat-label>Nombre</mat-label>
+                 <input type="text" name="nombre"
+                 #nombre="ngModel" [(ngModel)]="cliente.nombre"
+                 matInput placeholder="Nombre cliente" required/>
+            </mat-form-field>
+         
+            <mat-form-field appearance="outline">
+                 <mat-label>Apellido</mat-label>
+                 <input type="text" name="apellido"
+                 #apellido="ngModel" [(ngModel)]="cliente.apellido"
+                 matInput placeholder="Apellido cliente" required/>
+             </mat-form-field>
+         
+             <mat-form-field appearance="outline">
+                 <mat-label>Correo</mat-label>
+                 <input type="email" name="correo"
+                 #correo="ngModel" [(ngModel)]="cliente.correo"
+                 matInput placeholder="Correo cliente" required/>
+             </mat-form-field>
+         
+             <!-- <mat-form-field appearance="outline">
+                 <mat-label>Contraseña</mat-label>
+                 <input type="text" name="pass"
+                 #pass="ngModel" [(ngModel)]="cliente."
+                 matInput placeholder="Contraseña cliente" required/>
+             </mat-form-field> -->
+         
+             <mat-form-field appearance="outline">
+                 <mat-label>Telefono</mat-label>
+                 <input name="telefono"
+                 #telefono="ngModel" [(ngModel)]="cliente.telefono"
+                 matInput type="number" placeholder="Telefono cliente" required/>
+             </mat-form-field>
+         
+             <mat-form-field appearance="outline">
+                 <mat-label>Direccion</mat-label>
+                 <input type="text" name="direccion"
+                 #direccion="ngModel" [(ngModel)]="cliente.direccion"
+                 matInput placeholder="Direccion cliente"/>
+             </mat-form-field>
+         
+             <!-- <mat-form-field appearance="outline">
+                 <mat-label>Rol</mat-label>
+                 <mat-select name="rol" #rol="ngModel" [(ngModel)]="empleado.rol" placeholder="Rol">
+                     <mat-option value="empleado">Empleado</mat-option>
+                     <mat-option value="administrador">Administrador</mat-option>
+                 </mat-select>
+             </mat-form-field> -->
+         
+            </form>
+         </div>
+
+        <div mat-dialog-actions [align]="'center'">
+            <button class="btnSaitamaplus" (click)="guardaCambios(clienteEditForm,cliente_id)"
+            [disabled]="!clienteEditForm.form.valid">Actualizar</button>
+            <button class="btnSaitamaplus" mat-dialog-close>Cancelar</button>
+        </div>
+    </div>
+    <div *ngIf="ruletacriolla==2">
+        <h2>Seleccion de Foto para perfil</h2>
+    </div>
+    <div class="dialogosCliente" *ngIf="ruletacriolla==3">
+        <h2>Cambio de contraseña</h2>
+        <p>Ingrese su correo electronico a enviar informacion</p>
+        <form #cambiaContra="ngForm">
+            <input type="email" name="pass" class="inputmejorado" required>
+        </form>
+        <div mat-dialog-actions>
+            <button style="margin-right: 8px;" [disabled]="!cambiaContra.form.valid" class="btnSaitamaplus">Enviar</button>
+            <button mat-dialog-close class="btnSaitamaplus">Cancelar</button>
+        </div>
+    </div>
+</div>

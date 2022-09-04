@@ -201,7 +201,6 @@ body{
     display: inline-block;
     height: 32px;
     width: 32px;
-    min-width: auto;
 }
 .eliminaempleado{
     background: url(../imagen/icons/eliminar.png) no-repeat;
@@ -687,11 +686,12 @@ form button[disabled]{
     display: flex;
     justify-content: left;
     align-items:center;
+    flex-direction: row-reverse;
     background: var(--bg-color);
     margin-left: 5%;
     margin-top: 25px;
     margin-bottom: 25px;
-    width: 50%;
+    width: 75%;
     min-height: 200px;
     background:  rgba(255, 255, 255, 0.43);
     border-radius: 16px;
@@ -735,9 +735,10 @@ form button[disabled]{
     display: inline-block;
 }
 .contenedorSimple{
-    width: 90%;
+    width: 99%;
     background-color: #E0EEEF;
     height: 100%;
+    padding-left: 15px;
 }
 .tituloyAdicionalSimple{
     margin: 5px;
@@ -802,6 +803,18 @@ form button[disabled]{
     cursor:pointer;
     letter-spacing: 2px;
     border-radius: 5px;
+}
+
+.btnSaitamaplus:disabled{
+    font-size: 15px;
+    padding: 5px;
+    margin-top: 15px;
+    color: white;
+    background: #c5dfb1;
+    cursor:pointer;
+    letter-spacing: 2px;
+    border-radius: 5px;
+    cursor: not-allowed;
 }
 
 .subCabecera{
@@ -873,6 +886,16 @@ form button[disabled]{
     font-weight: 500;
     color: #fff;
   }
+
+  .inputmejorado{
+    width: 49% !important;
+  }
+
+  .merlin{
+    display: flex;
+    width: 92%;
+  }
+
   .paginaMagica{
     margin-top: 2%;
     font-size: 25px;
