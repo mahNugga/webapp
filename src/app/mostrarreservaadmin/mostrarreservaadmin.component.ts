@@ -14,7 +14,7 @@ import { Horario } from '../modelos/horario';
 })
 export class MostrarreservaadminComponent implements OnInit {
 
-  displayedColumns:string[] =['cliente','empleado','fecha','hora','servicio','estado'];
+  displayedColumns:string[] =['cliente','empleado','fecha','hora','servicio','estadoactual','estado'];
   dataSource!: MatTableDataSource<Reservaciondb>;
   public text="row 1";
   public reserva:any;
@@ -25,7 +25,7 @@ export class MostrarreservaadminComponent implements OnInit {
     private _estadoreservaservicio: EstadoReservaServicio
   ) { 
     this.detalleReservaciones();
-    this.estado = new EstadoReserva('','',-1);
+    this.estado = new EstadoReserva(-1,'','',-1);
   }
 
   ngOnInit(): void {
@@ -48,6 +48,8 @@ export class MostrarreservaadminComponent implements OnInit {
       next:(n)=>{
         if(n.listilla){
           this.estadosR = n.listilla
+          console.log(this.estadosR);
+          console.log(n.listilla);
         }
       },error:(e)=>console.log(e)
     });
@@ -59,6 +61,21 @@ export class MostrarreservaadminComponent implements OnInit {
         if(n.listilla){
           this.estadosR = n.listilla
         }
+      },error:(e)=>console.log(e)
+    });
+  }
+
+  cambiaEstadoReserva(event:any,row:any){
+    console.log(row);
+    let val = event.target.value;
+    console.log(val);
+    let id = row.reserva_id
+    console.log(id);
+    //let id = this.estadosR;
+    //console.log(id);
+    this._reservaservicio.cambiaEstadoReserva(id,val).subscribe({
+      next:(n)=>{
+        console.log("estado cambiao");
       },error:(e)=>console.log(e)
     });
   }

@@ -26,4 +26,12 @@ export class ServicioServicio{
         let headers = new HttpHeaders().set('Content-Type','application/json');
         return this._http.get(this.url+'consulta-servicio',{headers:headers});
     }
+
+    editarServicio(servicioesit:Servicio):Observable<any>{
+        let params = JSON.stringify(servicioesit);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.put(this.url+'edita-servicio',params,{headers:headers});
+    }
 }

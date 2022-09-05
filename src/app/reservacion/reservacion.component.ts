@@ -108,7 +108,7 @@ export class ReservacionComponent implements OnInit {
             this.logico=true;
             arreglo=n.fechin;
             console.log(this.horarios);
-            console.log(this.logico);
+            //console.log(this.logico);
             this.empleados = n.fechin;
             arreglo.forEach((element: any) => {
               console.log(element)
@@ -149,7 +149,7 @@ export class ReservacionComponent implements OnInit {
             }else{
               this.elegido=[];
             }
-            console.log(this.elegido);
+            //console.log(this.elegido);
           }
         },
         error:(e)=> console.log(e)
@@ -185,6 +185,8 @@ export class ReservacionComponent implements OnInit {
     var removedor = document.querySelector("lostds");
     removedor?.classList.remove("elegido:disabled");
     removedor?.classList.add("nada");
+    this.empleado_id=empneo.empleado_id;
+    console.log(this.empleado_id);
     //let emp = empneo;
     //this.horaNeo=empneo
     this.rambo=false;
@@ -223,12 +225,12 @@ export class ReservacionComponent implements OnInit {
           /* console.log(pruebafechaAnother);
           console.log(pruebaspanol); */
           //console.log(pruebafechahoyconvert);
-          if(this.diff<0){
+          if(this.diff<199){
             console.log("hoy no se trabaja");
             opcion="mayor";
             this.creaArreglodeHorasDisponibles(lehourActual,leminute,horafixinico,horafixfin,opcion);
           }
-          if(this.diff<1100 && this.diff>1){
+          if(this.diff<1100 && this.diff>199){
             console.log("hoy se camella");
             opcion="igual";
             this.creaArreglodeHorasDisponibles(lehourActual,leminute,horafixinico,horafixfin,opcion);
@@ -275,6 +277,7 @@ export class ReservacionComponent implements OnInit {
           
         }else{
           this.libre=false
+          console.log("tiene reservaciones");
         }
       }, error:(e)=>console.log(e)
     });
@@ -323,14 +326,16 @@ export class ReservacionComponent implements OnInit {
       }
 
     }else{
-      if(horaentrada>hora){
+      /* if(horaentrada>hora){
         iniciobucle = horaentrada
       }else{
         iniciobucle =hora;
-      }
-      indic = (horasalid - hora);
+      } */
+      iniciobucle=horaentrada;
+      indic = (horasalid - horaentrada);
       /* console.log("la hora indice:"+indic);
       console.log('la resta '+(horasalid - horaentrada)); */
+      console.log("inicio manana:"+iniciobucle);
       for(let i=0; i<indic;i++){
         this.arregloHorasDisp[i]=iniciobucle;
         iniciobucle++;

@@ -426,7 +426,7 @@ form button[disabled]{
     font-size: 25px;
     min-width: 30px;
     width: 35px;
-    padding: 10px;
+    padding: 5px;
 }
 .empleadoTabla td{
     border-bottom: 2px solid #ccc;
@@ -894,6 +894,14 @@ form button[disabled]{
   .merlin{
     display: flex;
     width: 92%;
+  }
+
+  .Pantheon{
+    font: optional;
+  }
+  .shield{
+    min-height: 500px;
+    height: 550px;
   }
 
   .paginaMagica{

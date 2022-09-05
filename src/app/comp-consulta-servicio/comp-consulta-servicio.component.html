@@ -32,7 +32,7 @@
                 <td class="nombres">{{servicio.nombre}}</td><td class="nombres">{{servicio.descripcion}}</td>
                 <td class="correo">{{servicio.hora}}</td><td class="centrar">{{servicio.precio}}</td>
                 <!-- <td class="limite" *ngIf="empleado.rol==1">Empleado</td><td *ngIf="empleado.rol==7"> Administrador</td> -->
-                <td class="borderless"><button ><span class="editaempleado" ></span></button></td>
+                <td class="borderless"><button ><span class="editaempleado" (click)="editaServicio(servicio)" ></span></button></td>
                 <!-- <td class="borderless"><button class="lasttd" (click)="openDialogX('elimina',empleado)"><span class="eliminaempleado"></span></button></td> -->
             </tr>
         </tbody>

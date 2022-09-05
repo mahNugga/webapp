@@ -5,6 +5,7 @@ import { ClienteBasic } from "../modelos/clienteBasic";
 import { global } from "./global";
 import { ClienteRegistro } from "../modelos/clienteregistro";
 import { ClienteEdicion } from "../modelos/clienteActualizar";
+import { ClienteEdita } from "../modelos/clienteEdita";
 
 @Injectable()
 export class ClienteServicio{
@@ -56,5 +57,13 @@ export class ClienteServicio{
         .set('Content-Type','application/json');
 
         return this._http.put(this.url+'actualiza-registrocliente',params,{headers:headers,params:param});
+    }
+
+    mantenimientoCliente(c:ClienteEdita):Observable<any>{
+        let params = JSON.stringify(c);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.put(this.url+'mantinimiento-cliente',params,{headers:headers});
     }
 }

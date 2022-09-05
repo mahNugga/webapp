@@ -68,4 +68,14 @@ export class ReservacionServicio{
         return this._http.get(this.url+'busca-fechareserva',{headers:headers,params:param});
     }
 
+    cambiaEstadoReserva(rid:any,estadoid:any):Observable<any>{
+        let param = new HttpParams()
+        .set("reserva_id",rid)
+        .set("estado_id",estadoid);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.put(this.url+'mantenimiento-reservaadmin',{headers:headers,params:param});
+    }
+
 }

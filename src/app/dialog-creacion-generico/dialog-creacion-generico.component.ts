@@ -22,6 +22,8 @@ export class DialogCreacionGenericoComponent implements OnInit {
     this.genex=gen.generoInvoker;
     this.cliente = new ClienteEdicion('','','','','');
     this.cliente_id = gen.id;
+    console.log(gen);
+    this.cliente = gen;
   }
 
   ngOnInit(): void {

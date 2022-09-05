@@ -50,8 +50,8 @@ export class CompConsultaInsumoComponent implements OnInit,AfterViewInit {
           this.insumos = response.listaInsumo;
           this.dataSource =response.listaInsumo;
         }
-        console.log(this.insumos);
-        console.log(this.dataSource);
+        /* console.log(this.insumos);
+        console.log(this.dataSource); */
       },
       error=>{
         console.log(<any>error)

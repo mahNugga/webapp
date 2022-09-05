@@ -49,7 +49,9 @@ export class EntradaEmpleadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.neo = this.elegirPiropo(this.min,this.max,this.piropear);
-    this.fechaMostrar = this.fechaEmp.toLocaleDateString("es-ES");
+    //this.fechaMostrar = this.fechaEmp.toLocaleDateString("es-ES");
+    this.fechaMostrar = this.fechaEmp.toISOString().split('T')[0];
+    //this.fechaMostrar = '2022-09-05';
     //console.log("ahi van:"+this.fechaEmp+" e indice "+this.indice);
     this.trabajoContEmp(this.idEmp);
     this.cabEmpleado(this.idEmp);

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Servicio } from '../modelos/servicio';
 import { ServicioServicio } from '../servicios/servicio.servicio';
-
+import { MatDialog } from '@angular/material/dialog';
+import { DialogGenericoAdminComponent } from '../dialog-generico-admin/dialog-generico-admin.component';
 
 @Component({
   selector: 'app-comp-consulta-servicio',
@@ -15,8 +16,10 @@ export class CompConsultaServicioComponent implements OnInit {
   count: number = 0;
   tableSize: number = 10;
   tableSizes: any = [5,10,15];
+  public genero="servicioAdmin";
   constructor(
-    private _servicioServicio : ServicioServicio
+    private _servicioServicio : ServicioServicio,
+    private dialog:MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -44,5 +47,15 @@ export class CompConsultaServicioComponent implements OnInit {
     this.tableSize = event.target.value;
     this.page = 1;
     //this.listaEmpleado();
+  }
+
+  editaServicio(servicio:any){
+    servicio.generoInvoker = this.genero;
+    console.log(servicio);
+    this.dialog.open(DialogGenericoAdminComponent,{
+      width:'40%',
+      minHeight:'400px',
+      data:servicio
+    });
   }
 }

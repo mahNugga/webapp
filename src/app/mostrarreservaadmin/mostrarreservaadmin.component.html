@@ -68,13 +68,20 @@
             (change)="VamoPerrucho($event)" 
               name="empleadoSeleccion" id="empleadoHorario"
               #estadoReserva="ngModel" [(ngModel)]="estado.nombre"
+              #estadoReserva="ngModel" [(ngModel)]="estado.id"
         -->
+          <ng-container matColumnDef="estadoactual">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Estado</strong> </th>
+            <td mat-cell *matCellDef="let row"> {{row.estado}} </td>
+          </ng-container>
 
           <ng-container matColumnDef="estado">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Estado</strong> </th>
-            <td mat-cell *matCellDef="let row">  <select >
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Edicion </strong> </th>
+            <td mat-cell *matCellDef="let row">  <select name="estado" 
+                  (change)="cambiaEstadoReserva($event,row)"
+                  >
                   <option *ngFor="let empleado of estadosR;let i=index"
-                  >{{i+1}} - {{empleado.nombre}}</option>
+                  [value]="empleado.id" > - {{empleado.nombre}}</option>
               </select> </td>
           </ng-container>
           

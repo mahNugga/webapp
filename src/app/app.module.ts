@@ -48,6 +48,7 @@ import { MantenimientoempleadoComponent } from './mantenimientoempleado/mantenim
 import { PerfilclienteComponent } from './perfilcliente/perfilcliente.component';
 import { MantenimientoestadoComponent } from './mantenimientoestado/mantenimientoestado.component';
 import { DialogCreacionGenericoComponent } from './dialog-creacion-generico/dialog-creacion-generico.component';
+import { DialogGenericoAdminComponent } from './dialog-generico-admin/dialog-generico-admin.component';
 
 
 @NgModule({
@@ -86,7 +87,8 @@ import { DialogCreacionGenericoComponent } from './dialog-creacion-generico/dial
     MantenimientoempleadoComponent,
     PerfilclienteComponent,
     MantenimientoestadoComponent,
-    DialogCreacionGenericoComponent
+    DialogCreacionGenericoComponent,
+    DialogGenericoAdminComponent
   ],
   imports: [
     BrowserModule,
