@@ -21,6 +21,15 @@
     font-family: Robotmonolightitalic;
     src: url(../fonts/RobotoMono-LightItalic.ttf) format('truetype');
 }
+@font-face {
+    font-family: DancingBold;
+    src: url(../fonts/DancingScript-Bold.ttf) format('truetype');
+}
+@font-face {
+    font-family: KanitRegular;
+    src: url(../fonts/Kanit-Regular.ttf) format('trutype');
+}
+
 *{
     margin: 0px;
     padding: 0px;
@@ -179,6 +188,20 @@ body{
     text-decoration: none;
 }
 
+/*FONTS PANTALLA PRINCIPAL*/
+.MainTitle h1{
+    font-family: DancingBold;
+    font-weight: 600;
+    font-size: 40px;
+    padding-top: 13px;
+}
+
+.MainCabTtile{
+    font-family: KanitRegular;
+    font-weight: 400;
+    font-size: 25px;
+    font-style: italic;
+}
 /*Adicion de iconos*/
 .ubicacion{
     background: url(../imagen/icons/Location.png) no-repeat;

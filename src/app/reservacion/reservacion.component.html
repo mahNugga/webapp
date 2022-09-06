@@ -62,26 +62,50 @@
             </table>
         </div>
     <div *ngIf="thor" class="mjiolnir">
-        <h2> Horas disponibles</h2>
-        <table>
-            <body id="tableh">
-                <tr *ngFor="let disp of arregloHorasDisp">
-                    <th>
-                        {{disp+":00"}}
-                    </th>
-                    <!-- <td (click)="elejirHora(hora)"
-                        [ngClass]="status ? 'elegido':'nada'"
-                        id="a{{hora}}"><span></span></td>
-                    <td (click)="procedeReserva(disp)" id="{{disp}}"> -->
-                    <td (click)="procedeReserva(disp)" 
-                        [ngClass]="status ? 'elegido:disabled':'nada'" 
-                        class="lostds"  id="{{disp}}">
-                        <!-- <button id="{{disp}}" class="btntd" (click)="procedeReserva(disp)" ></button> -->
-                        <!-- Elegir empleado -->
-                    </td>
-                </tr>
-            </body>
-        </table>
+        <div *ngIf="stark==1">
+            <h2> Horas disponibles</h2>
+            <table>
+                <body id="tableh">
+                    <tr *ngFor="let disp of arregloHorasDisp">
+                        <th>
+                            {{disp+":00"}}
+                        </th>
+                        <!-- <td (click)="elejirHora(hora)"
+                            [ngClass]="status ? 'elegido':'nada'"
+                            id="a{{hora}}"><span></span></td>
+                        <td (click)="procedeReserva(disp)" id="{{disp}}"> -->
+                        <td (click)="procedeReserva(disp)" 
+                            [ngClass]="status ? 'elegido:disabled':'nada'" 
+                            class="lostds"  id="{{disp}}">
+                            <!-- <button id="{{disp}}" class="btntd" (click)="procedeReserva(disp)" ></button> -->
+                            <!-- Elegir empleado -->
+                        </td>
+                    </tr>
+                </body>
+            </table>
+        </div>
+        <div *ngIf="stark==2">
+            <h2> Horas disponibles</h2>
+            <table>
+                <body id="tableh">
+                    <tr *ngFor="let disp of arregloHorasNoDispFINAL">
+                        <th>
+                            {{disp+":00"}}
+                        </th>
+                        <!-- <td (click)="elejirHora(hora)"
+                            [ngClass]="status ? 'elegido':'nada'"
+                            id="a{{hora}}"><span></span></td>
+                        <td (click)="procedeReserva(disp)" id="{{disp}}"> -->
+                        <td (click)="procedeReserva(disp)" 
+                            [ngClass]="status ? 'elegido:disabled':'nada'" 
+                            class="lostds"  id="{{disp}}">
+                            <!-- <button id="{{disp}}" class="btntd" (click)="procedeReserva(disp)" ></button> -->
+                            <!-- Elegir empleado -->
+                        </td>
+                    </tr>
+                </body>
+            </table>
+        </div>
     </div>
     <div *ngIf="rambo" class="rocky">
         <button class="btnreservar" (click)="confirmarReserva()">Reservar</button>

@@ -9,6 +9,7 @@ import { DialogEmpleadoComponent } from '../dialog-empleado/dialog-empleado.comp
 })
 export class EntradaPrincipalComponent implements OnInit {
 
+  public titulo="Estudio de belleza Carolina Aguirre"
   constructor( private dialog: MatDialog) { }
 
   ngOnInit(): void {

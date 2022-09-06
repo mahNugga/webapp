@@ -7,6 +7,7 @@ import { Reservacion } from '../modelos/reservacion';
 import { Location } from '@angular/common';
 import { ReservacionServicio } from '../servicios/reservacion.servicio';
 
+
 @Component({
   selector: 'app-reservacion',
   templateUrl: './reservacion.component.html',
@@ -35,8 +36,12 @@ export class ReservacionComponent implements OnInit {
   public thor:boolean=false;
   public libre!:boolean;
   public arregloHorasDisp: any=[];
+  public arregloHorasNoDisp: any=[];
+  public arregloHorasNoDispFINAL:any=[];
+  public arregloReservacionesEncontradas:any=[];
   public ultimostatusIpromise:number=0;
   public rambo:boolean=false;
+  public stark:number=0;
   constructor(
     private _horarioServicio:HorarioServicio,
     private _reservaservicio:ReservacionServicio,
@@ -57,9 +62,10 @@ export class ReservacionComponent implements OnInit {
   
   fechas(){
     this.empleados=[];
-    console.log("reset: "+this.empleados);
+    //console.log("reset: "+this.empleados);
     this.thor=false;
     this.rambo=false;
+    this.stark=0;
     this.arregloHorasDisp=[];
     //console.log("me lleva la fecha");
     var comparaesta = new Date(this.fechacomparar);
@@ -113,7 +119,7 @@ export class ReservacionComponent implements OnInit {
             arreglo.forEach((element: any) => {
               console.log(element)
               if(element.hora_inicio=='10:00:00' && element.hora_fin=='19:00:00'){
-                console.log("yehaaaaaaaaaaa!");
+                //console.log("yehaaaaaaaaaaa!");
                 this.iniciohoraTabla=element.hora_inicio;
                 this.iniciohoraTabla = this.iniciohoraTabla.slice(0,2);
                 this.finhoraTabla = element.hora_fin;
@@ -132,13 +138,13 @@ export class ReservacionComponent implements OnInit {
                 this.finhoraTabla = this.finhoraTabla.slice(0,2);
                 this.empleado_id = element.empleado_id; 
               }
-              console.log(this.iniciohoraTabla+' -hasta- '+this.finhoraTabla);
+              //console.log(this.iniciohoraTabla+' -hasta- '+this.finhoraTabla);
               
               
             });
-            console.log(arreglo.length);
+            //console.log(arreglo.length);
             if(arreglo.length>0){
-              console.log('buggyman');
+              //console.log('buggyman');
               index = <number><unknown>this.finhoraTabla - <number><unknown>this.iniciohoraTabla;
               //console.log(index);
               var horas=parseInt(this.iniciohoraTabla);
@@ -197,27 +203,32 @@ export class ReservacionComponent implements OnInit {
     console.log(leminute);
     //this.fechahoy = this.fechaActual.toLocaleDateString("es-Es");
     console.log(this.fechahoy);
+    let horafixinico = empneo.hora_inicio.slice(0,2);
+    let horafixfin = empneo.hora_fin.slice(0,2);
+    let opcion;
     this._reservaservicio.buscaFechaExiste(this.fechacomparar,empneo.empleado_id).subscribe({
       next:(n)=>{
         if(n.ganador){
           console.log("yooooooooooo");
           console.log(n.ganador);
+          this.arregloReservacionesEncontradas=n.ganador;
+          
         }
         if(n.ganador<1){
           console.log("heregoagain");
+          this.stark=1;
           //this.libre=true;
           /* console.log('inicio '+this.iniciohoraTabla+'empneoinicio '+empneo.hora_inicio);
           console.log('fin '+this.finhoraTabla+'empneofin '+empneo.hora_fin); */
-          let horafixinico = empneo.hora_inicio.slice(0,2);
-          let horafixfin = empneo.hora_fin.slice(0,2);
-          console.log(horafixinico);
+          
+          //console.log(horafixinico);
           let pruebafecha = new Date(this.fechacomparar);
           let pruebafechaAnother = pruebafecha.toLocaleDateString("en-EN");
           let pruebaspanol = pruebafecha.toLocaleDateString("es-ES");
           let pruebafechahoy = new Date(this.fechahoy); 
           let pruebafechahoyconvert = pruebafechahoy.toLocaleDateString("es-ES");
           lehourActual = lehourActual;
-          let opcion;
+          
           /* console.log(this.fechaActual);
           console.log(lehourActual);
           console.log(this.fechacomparar);
@@ -276,8 +287,23 @@ export class ReservacionComponent implements OnInit {
             } */
           
         }else{
+          console.log(this.arregloReservacionesEncontradas);
           this.libre=false
           console.log("tiene reservaciones");
+          this.stark=2;
+
+          if(this.diff<199){
+            console.log("hoy no se trabaja pero si hay reservaciones");
+            opcion="mayor";
+            this.creaArregloHorasNodisp( this.arregloReservacionesEncontradas,lehourActual,leminute,horafixinico,horafixfin,opcion);
+          }
+          if(this.diff<1100 && this.diff>199){
+            console.log("hoy se camella y con reservaciones");
+            opcion="igual";
+            this.creaArregloHorasNodisp(this.arregloReservacionesEncontradas,lehourActual,leminute,horafixinico,horafixfin,opcion);
+          }
+
+          //this.creaArregloHorasNodisp(this.arregloReservacionesEncontradas,lehourActual,leminute,horafixinico,horafixfin,"igual");
         }
       }, error:(e)=>console.log(e)
     });
@@ -303,7 +329,8 @@ export class ReservacionComponent implements OnInit {
   }
 
   creaArreglodeHorasDisponibles(hora:any,minuti:any,horaentrada:any,horasalid:any,op:string){
-    this.arregloHorasDisp=[];
+    this.arregloHorasNoDisp=[];
+    //this.stark
     /* console.log("la hora que viene: "+hora);
     console.log("la horaentrada que viene: "+horaentrada);
     console.log("la horasalida que viene: "+horasalid); */
@@ -330,7 +357,7 @@ export class ReservacionComponent implements OnInit {
         iniciobucle = horaentrada
       }else{
         iniciobucle =hora;
-      } */
+      }  */
       iniciobucle=horaentrada;
       indic = (horasalid - horaentrada);
       /* console.log("la hora indice:"+indic);
@@ -343,6 +370,84 @@ export class ReservacionComponent implements OnInit {
     }
     
     console.log(this.arregloHorasDisp);
+  }
+
+  creaArregloHorasNodisp(horasOcupadas:any,hora:any,minuti:any,horaentrada:any,horasalid:any,op:string){
+    this.arregloHorasNoDisp=[];
+    var k: any[]=[];
+    let indic=0;
+    let iniciobucle=0;
+    let indicereserva=horasOcupadas.length;
+    console.log(horasOcupadas);
+    console.log(indicereserva);
+    if(op=='igual'){
+      if(hora>=horaentrada && minuti>1){
+        iniciobucle= hora+1;
+        console.log("daleeeeee guacho x2 LOL")
+        indic= (horasalid - (hora+1));
+      }
+      for(let i=0; i<indic;i++){
+        
+        this.arregloHorasNoDisp[i]=iniciobucle;
+        for(let x=0;x<indicereserva;x++){
+          console.log(horasOcupadas[x].hora);
+          if(this.arregloHorasNoDisp[i]==horasOcupadas[x].hora){
+            console.log("se econtro uno en "+iniciobucle);
+          }
+        }
+        iniciobucle++;
+      }
+
+    }else{
+      iniciobucle=horaentrada;
+      indic = (horasalid - horaentrada);
+      console.log("inicio manana con reservaciones:"+iniciobucle);
+      for(let i=0; i<indic;i++){
+        
+        this.arregloHorasNoDisp[i]=iniciobucle;
+        for(let x=0;x<indicereserva;x++){
+          console.log(horasOcupadas[x].hora);
+          if(this.arregloHorasNoDisp[i]==horasOcupadas[x].hora){
+            console.log("se econtro uno en "+iniciobucle);
+            //this.arregloHorasNoDisp.splice(i,1);
+            /* this.arregloHorasNoDisp.remove(i,1); */
+            delete this.arregloHorasNoDisp[i];
+          }
+        }
+        iniciobucle++;
+      }
+      for(let f=0;f<this.arregloHorasNoDisp.length;f++){
+        
+        for(let x=0;x<indicereserva;x++){
+          console.log(horasOcupadas[x].hora);
+          if(this.arregloHorasNoDisp[f]==horasOcupadas[x].hora){
+            /* console.log("se econtro uno en "+iniciobucle); */
+            this.arregloHorasNoDispFINAL=this.arregloHorasNoDisp
+            .filter(function(f: any){
+              return f
+            }) 
+          }
+        }
+      }
+      
+      /* for (let index = 0; index < this.arregloHorasNoDisp.length; index++) {
+        if(this.arregloHorasNoDisp[index]==undefined){
+          console.log("opps ese no va");
+          //index++;
+        }else{
+          k[index]=this.arregloHorasNoDisp[index];
+        }
+      } */
+      k = this.arregloHorasNoDisp.filter((element: undefined) =>{
+        return element !== undefined;
+      })
+      this.arregloHorasNoDispFINAL = k;
+    }
+    console.log(this.arregloHorasNoDisp);
+    console.log(this.arregloHorasNoDispFINAL);
+    console.log(k);
+    
+    
   }
   
   confirmarReserva(){
