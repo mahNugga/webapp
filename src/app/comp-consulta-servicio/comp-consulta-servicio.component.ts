@@ -57,5 +57,16 @@ export class CompConsultaServicioComponent implements OnInit {
       minHeight:'400px',
       data:servicio
     });
+    this.refresh();
+  }
+
+  refresh(){
+    this._servicioServicio.listaServicio().subscribe({
+      next:(n)=>{
+        if(n.listaServicio){
+          this.servicios = n.listaServicio;
+        }
+      },error:(e)=>console.log(e)
+    });
   }
 }

@@ -5,6 +5,7 @@ import { ReservacionServicio } from '../servicios/reservacion.servicio';
 import { EstadoReservaServicio } from '../servicios/estadoReserva.servicio';
 import { EstadoReserva } from '../modelos/estadoReserva';
 import { Horario } from '../modelos/horario';
+import { DataReserva } from '../modelos/data-reserva';
 
 @Component({
   selector: 'app-mostrarreservaadmin',
@@ -20,6 +21,7 @@ export class MostrarreservaadminComponent implements OnInit {
   public reserva:any;
   public estado:EstadoReserva;
   public estadosR:EstadoReserva[]=[];
+  public detallereserva!:MatTableDataSource<Reservaciondb>;
   constructor(
     private _reservaservicio:ReservacionServicio,
     private _estadoreservaservicio: EstadoReservaServicio
@@ -36,8 +38,9 @@ export class MostrarreservaadminComponent implements OnInit {
     this._reservaservicio.mostrarReservaAdmin().subscribe({
       next:(n)=>{
         if(n.reseDe){
+          this.detallereserva = n.reseDe;
           this.dataSource = n.reseDe;
-          console.log(this.dataSource);
+          console.log(this.detallereserva);
         }
       },error:(e)=>console.log(e)
     });
@@ -56,11 +59,15 @@ export class MostrarreservaadminComponent implements OnInit {
   }
 
   VamoPerrucho($event:any){
+    //console.log('entramos');
     this._estadoreservaservicio.mantenimientoEstadoReservalista().subscribe({
       next:(n)=>{
         if(n.listilla){
-          this.estadosR = n.listilla
-        }
+          this.estadosR = n.listilla;
+          /* this.dataSource= this.estadosR as unknown as MatTableDataSource<Reservaciondb>;
+          console.log('la datasource -->');
+          console.log(this.dataSource);*/
+        } 
       },error:(e)=>console.log(e)
     });
   }
@@ -75,9 +82,39 @@ export class MostrarreservaadminComponent implements OnInit {
     //console.log(id);
     this._reservaservicio.cambiaEstadoReserva(id,val).subscribe({
       next:(n)=>{
-        console.log("estado cambiao");
+        if(n){
+          console.log(n);
+          console.log("estado cambiao");
+          //this.dataSource._renderChangesSubscription;
+          this.refresh();
+          this.dataSource=this.detallereserva;
+        }
       },error:(e)=>console.log(e)
     });
   }
 
+  /* refresh(){
+    this._reservaservicio.mostrarReservaAdmin().subscribe(
+      (data:Reservaciondb[])=>{
+        this.dataSource.data=data;
+      }
+    );
+  }
+ */
+
+  refresh(){
+    this._reservaservicio.mostrarReservaAdmin().subscribe({
+      next:(n)=>{
+        if(n.reseDe){
+          console.log('resfresh aqui');
+          this.detallereserva=n.reseDe;
+          console.log(this.detallereserva);
+          this.dataSource.data=n.reseDe;
+          //this.dataSource.connect
+          //this.dataSource._updateChangeSubscription()
+          this.dataSource = new MatTableDataSource(n.reseDe);
+        }
+      },error:(e)=>console.log(e)
+    });
+  }
 }

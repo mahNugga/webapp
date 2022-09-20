@@ -15,6 +15,7 @@ export class ConsultaHorarioEmpleadoComponent implements OnInit {
   dataSource:MatTableDataSource<Horario>;
   public text="row 1";
   public horarios:any;
+  public genero='Horario';
   constructor(
     private _location:Location,
     private _ruta:Router

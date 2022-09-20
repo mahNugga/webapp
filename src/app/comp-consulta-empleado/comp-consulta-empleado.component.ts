@@ -103,6 +103,7 @@ export class CompConsultaEmpleadoComponent implements OnInit,AfterViewInit {
           response =>{
             console.log(response);
             //this.table.renderRows();
+            this.refresh();
           },
           error =>{
             console.log(<any>error);
@@ -110,6 +111,17 @@ export class CompConsultaEmpleadoComponent implements OnInit,AfterViewInit {
         );
       }
     });
+  }
+
+  refresh(){
+    this._empleadoservicio.listaEmpleado().subscribe({
+      next:(n)=>{
+        if(n.listaEmpleado){
+          this.empleados= n.listaEmpleado;
+        }
+      },error:(e)=>console.log(e)
+    });
+
   }
   
 }
