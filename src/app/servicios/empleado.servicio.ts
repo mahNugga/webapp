@@ -73,4 +73,13 @@ export class EmpleadoServicio{
 
         return this._http.get(this.url+'mantenimiento-empleado',{headers:headers});
     }
+
+    eliminarPermanenteEmpleado(id:any):Observable<any>{
+        let param = new HttpParams()
+        .set("id",id);
+        let headers = new HttpHeaders()
+        .set('Content-Type','application/json');
+
+        return this._http.delete(this.url+'mantenimiento-eliminaempleado',{headers:headers,params:param});
+    }
 }

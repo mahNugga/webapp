@@ -47,7 +47,7 @@ export class MostrarHorarioEmpleadoComponent implements OnInit {
       data:info
     });
     dialogref.afterClosed().subscribe(result=>{
-      if(result='Eliminado'){
+      if(result=='Eliminado'){
         this._horarioservicio.casiBorraHorario(info.id).subscribe({
           next:(n)=>{
             if(n){

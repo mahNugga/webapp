@@ -49,7 +49,7 @@
           <!-- Stock Ideal Column -->
           <ng-container matColumnDef="Edicion">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> <strong>Edicion</strong></th>
-            <td mat-cell *matCellDef="let row">  <button><span class="cancelarReserva"></span></button> </td>
+            <td mat-cell *matCellDef="let row">  <button (click)="hastaLaVista(row)"><span class="cancelarReserva"></span></button> </td>
           </ng-container> 
     
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -678,6 +678,9 @@ form button[disabled]{
     color: rgba(164, 85, 15, 0.85);
 }
 
+.natural{
+    background-image: linear-gradient(to bottom right, rgba(47, 231, 237, 0.88),rgb(204, 72, 200));
+}
 /*PAGINA EMPLEADO ENTRADA Y COMPONENTE DE CONSULTA Y EDICION*/
 /*ENTRADA EMPLEADO*/
 
