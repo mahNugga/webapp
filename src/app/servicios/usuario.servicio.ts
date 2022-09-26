@@ -20,6 +20,6 @@ export class UsuarioServicio{
         .set("correo",usuario.correo).set('password',usuario.password);
         let headers = new HttpHeaders()
         .set('Content-Type','application/json');
-        return this._http.get(this.url+'ingreso',{headers:headers,params:param});
+        return this._http.get(this.url+'ingreso-ruta',{headers:headers,params:param});
     }
 }

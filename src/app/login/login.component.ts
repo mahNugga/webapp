@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this._usuarioServicio.revisarIngreso(this.usuario).subscribe(
       response=>{
         if(response){
-          //console.log(response);
+          console.log(response);
           var param;
           if(response.teller==5){
             console.log("Recordaran este dia como el usuario...!");
